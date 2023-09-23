@@ -13,13 +13,11 @@ import (
 	"github.com/99designs/gqlgen/graphql/handler/extension"
 	"github.com/99designs/gqlgen/graphql/handler/lru"
 	"github.com/99designs/gqlgen/graphql/handler/transport"
-	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/gorilla/websocket"
 	"github.com/ravilushqa/otelgqlgen"
 	"github.com/rs/cors"
-	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 )
 
 func main() {
@@ -52,8 +50,8 @@ func main() {
 	srv := newServer(s)
 	srv.Use(otelgqlgen.Middleware())
 
-	router.Handle("/", playground.Handler("GraphQL playground", "/graphql"))
-	router.Handle("/graphql", otelhttp.NewHandler(srv, "graphql"))
+	router.HandleFunc("/", renderApolloSandbox)
+	router.Handle("/graphql", srv)
 	// Set the context with the span from the request.
 
 	cors := cors.New(cors.Options{
@@ -65,7 +63,7 @@ func main() {
 		// Debug:            true,
 	})
 
-	log.Printf("Listening on localhost:%s", port)
+	log.Printf("Listening on http://localhost:%s", port)
 	log.Fatal(http.ListenAndServe(":"+port, cors.Handler(router)))
 }
 
