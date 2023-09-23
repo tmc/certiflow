@@ -1,49 +1,22 @@
 # This makefile provides helper targets for building and running the project.
 # Run `make help` to print out all the available targets.
 
-.PHONY: run-sample-service-set
-run-sample-service-set: ## Run a sample service set.
-	@echo "Running sample service set..."
-	@echo "To clean up and shut down all resources associated with this project, run 'make clean'"
-	@cd ./dev-harness && make deps
-	@cd ./dev-harness && tilt up
+.PHONY: run-dev
+run-dev: run-frontend-dev ## Run frontend and backend
+
+.PHONY: run-backend-dev
+run-backend-dev: ## Run backend
+	make -C go-graphql-backend run-dev
+
+.PHONY: run-frontend-dev
+run-frontend-dev: ## Run frontend
+	make -C react-frontend run-dev
 
 .PHONY: generate
 generate: ## Generate code.
 	@echo "Generating code..."
-	@cd ./graphene-backend && make generate
-	@cd ./fastapi-backend && make generate
 	@cd ./go-graphql-backend && make generate
-	@cd ./gateway && make generate
-
-.PHONY: port-doctor
-port-doctor: ## Check if the required ports are available.
-	@echo "Checking if the required ports are available..."
-	@./scripts/port-doctor.sh \
-		3000 4000 8000 8080 \
-		5432 \
-		6379 6380 \
-		4317 4318 \
-		16686 14268
-
-.PHONY: port-doctor-kevorkian
-port-doctor-kevorkian: ## Attempt to kill processes that are using the required ports.
-	@echo "Checking if the required ports are available..."
-	@./scripts/port-doctor.sh -k \
-		3000 4000 8000 8080 \
-		5432 \
-		6379 6380 \
-		4317 4318 \
-		16686 14268
-
-.PHONY: run-load-generator
-run-load-generator: ## Run the load generator.
-	@echo "Running the load generator..."
-	@cd ./load-generation && make run
-
-.PHONY: clean
-clean: ## Cleans up and shuts down resources assocaited with this project.
-	@cd ./dev-harness && tilt down
+	@cd ./react-frontend && make generate
 
 .PHONY: help
 help: ## Show help for each of the Makefile recipes.
