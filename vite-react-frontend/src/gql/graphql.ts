@@ -32,6 +32,7 @@ export type ControlCategory = {
   __typename?: 'ControlCategory';
   id: Scalars['ID']['output'];
   objectives?: Maybe<Array<Maybe<Objective>>>;
+  sectionIdentifier: Scalars['String']['output'];
   title: Scalars['String']['output'];
   version?: Maybe<Scalars['String']['output']>;
 };
@@ -45,12 +46,13 @@ export type ControlMapping = {
 
 export type ControlReference = {
   __typename?: 'ControlReference';
-  factorType?: Maybe<FactorType>;
+  factorType: FactorType;
   id: Scalars['ID']['output'];
-  levels?: Maybe<Array<Maybe<Level>>>;
+  levels: Array<Level>;
   name: Scalars['String']['output'];
+  sectionIdentifier: Scalars['String']['output'];
   specification: Scalars['String']['output'];
-  topics?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  topics: Array<Scalars['String']['output']>;
 };
 
 export type Evidence = {
@@ -74,9 +76,9 @@ export enum FactorType {
 
 export type Level = {
   __typename?: 'Level';
-  authoritativeSourceMapping?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  factors?: Maybe<Array<Maybe<FactorType>>>;
-  implementationExample?: Maybe<Scalars['String']['output']>;
+  authoritativeSourceMapping: Array<Scalars['String']['output']>;
+  factors: Array<FactorType>;
+  implementationExample: Scalars['String']['output'];
   level: Scalars['Int']['output'];
 };
 
@@ -105,9 +107,10 @@ export type MutationCreateOrganizationArgs = {
 
 export type Objective = {
   __typename?: 'Objective';
-  controlReferences?: Maybe<Array<Maybe<ControlReference>>>;
+  controlReferences: Array<ControlReference>;
   description?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
+  sectionIdentifier: Scalars['String']['output'];
   title: Scalars['String']['output'];
 };
 
@@ -176,5 +179,11 @@ export type GetControlCategoryQueryVariables = Exact<{
 
 export type GetControlCategoryQuery = { __typename?: 'Query', getControlCategory?: { __typename?: 'ControlCategory', id: string } | null };
 
+export type AllControlCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllControlCategoriesQuery = { __typename?: 'Query', allControlCategories: Array<{ __typename?: 'ControlCategory', id: string }> };
+
 
 export const GetControlCategoryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getControlCategory"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getControlCategory"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<GetControlCategoryQuery, GetControlCategoryQueryVariables>;
+export const AllControlCategoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"allControlCategories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allControlCategories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<AllControlCategoriesQuery, AllControlCategoriesQueryVariables>;
