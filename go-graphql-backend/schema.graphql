@@ -1,12 +1,23 @@
-# GraphQL schema example
+# Schema for HITRUST Compliance Tool
 
-type User @key(fields: "id") {
-  id: ID!
-  description: String!
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
 }
 
 type Query {
-  user(id: ID!): User
+  # Fetches a specific control category by its ID
+  getControlCategory(id: ID!): ControlCategory
+
+  # Lists all control categories
+  allControlCategories: [ControlCategory!]!
+
+  # Fetches a specific piece of evidence by its ID
+  getEvidence(id: ID!): Evidence
+
+  # Fetches a specific organization by its ID
+  getOrganization(id: ID!): Organization
 }
 
 type Subscription {
@@ -18,3 +29,111 @@ type CompletionChunk {
   text: String!
   isLast: Boolean!
 }
+
+
+type Mutation {
+  # Creates a new evidence entry
+  createEvidence(input: EvidenceInput): Evidence
+
+  # Associates a Google Doc link with an organization
+  addGoogleDocLinkToOrg(organizationId: ID!, googleDocLink: String!): Organization
+
+  # Creates a new organization
+  createOrganization(input: OrganizationInput): Organization
+}
+
+# Represents a category of controls, associated with a HITRUST version
+type ControlCategory {
+  id: ID!
+  title: String!
+  version: String # Represents HITRUST version
+  objectives: [Objective]
+}
+
+# Describes a specific objective within a control category
+type Objective {
+  id: ID!
+  title: String!
+  description: String
+  controlReferences: [ControlReference]
+}
+
+# Provides detailed information about a reference associated with an objective
+type ControlReference {
+  id: ID!
+  name: String!
+  specification: String!
+  topics: [String]
+  factorType: FactorType
+  levels: [Level]
+}
+
+# Enumerates the possible factor types
+enum FactorType {
+  ORGANIZATIONAL
+  SYSTEM
+  REGULATORY
+}
+
+# Describes a specific level, which might have multiple factor types and authoritative sources
+type Level {
+  level: Int! # Assuming values like 1, 2, 3
+  factors: [FactorType]
+  authoritativeSourceMapping: [String]
+  implementationExample: String
+}
+
+# Represents a piece of evidence associated with a control
+type Evidence {
+  id: ID!
+  text: String!
+  url: String
+  controlMappings: [ControlMapping]
+}
+
+# Maps a specific piece of evidence to a control reference and its assessment level
+type ControlMapping {
+  controlReferenceId: ID!
+  assessment: AssessmentLevel
+  evidenceCreator: String # Who uploaded or linked the evidence
+}
+
+# Enumerates the possible assessment levels for a control
+enum AssessmentLevel {
+  NOT_ASSESSED
+  PARTIALLY_SATISFIED
+  SATISFIED
+}
+
+# Describes an organization, its context, and associated Google Doc
+type Organization {
+  id: ID!
+  name: String!
+  context: [OrgContextItem]
+  googleDocLink: String
+}
+
+# Details a specific item of organizational context
+type OrgContextItem {
+  title: String!
+  value: String!
+}
+
+# Input type for creating a new piece of evidence
+input EvidenceInput {
+  text: String!
+  url: String
+}
+
+# Input type for creating a new organization
+input OrganizationInput {
+  name: String!
+  context: [OrgContextItemInput]
+}
+
+# Input type for specifying an item of organizational context during organization creation
+input OrgContextItemInput {
+  title: String!
+  value: String!
+}
+

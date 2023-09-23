@@ -11,12 +11,39 @@ import (
 	"time"
 )
 
-// User is the resolver for the user field.
-func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error) {
-	return &model.User{
-		ID:          id,
-		Description: "User " + id + " description here. (coming from the Go backend)",
-	}, nil
+// CreateEvidence is the resolver for the createEvidence field.
+func (r *mutationResolver) CreateEvidence(ctx context.Context, input *model.EvidenceInput) (*model.Evidence, error) {
+	panic(fmt.Errorf("not implemented: CreateEvidence - createEvidence"))
+}
+
+// AddGoogleDocLinkToOrg is the resolver for the addGoogleDocLinkToOrg field.
+func (r *mutationResolver) AddGoogleDocLinkToOrg(ctx context.Context, organizationID string, googleDocLink string) (*model.Organization, error) {
+	panic(fmt.Errorf("not implemented: AddGoogleDocLinkToOrg - addGoogleDocLinkToOrg"))
+}
+
+// CreateOrganization is the resolver for the createOrganization field.
+func (r *mutationResolver) CreateOrganization(ctx context.Context, input *model.OrganizationInput) (*model.Organization, error) {
+	panic(fmt.Errorf("not implemented: CreateOrganization - createOrganization"))
+}
+
+// GetControlCategory is the resolver for the getControlCategory field.
+func (r *queryResolver) GetControlCategory(ctx context.Context, id string) (*model.ControlCategory, error) {
+	panic(fmt.Errorf("not implemented: GetControlCategory - getControlCategory"))
+}
+
+// AllControlCategories is the resolver for the allControlCategories field.
+func (r *queryResolver) AllControlCategories(ctx context.Context) ([]*model.ControlCategory, error) {
+	panic(fmt.Errorf("not implemented: AllControlCategories - allControlCategories"))
+}
+
+// GetEvidence is the resolver for the getEvidence field.
+func (r *queryResolver) GetEvidence(ctx context.Context, id string) (*model.Evidence, error) {
+	panic(fmt.Errorf("not implemented: GetEvidence - getEvidence"))
+}
+
+// GetOrganization is the resolver for the getOrganization field.
+func (r *queryResolver) GetOrganization(ctx context.Context, id string) (*model.Organization, error) {
+	panic(fmt.Errorf("not implemented: GetOrganization - getOrganization"))
 }
 
 // TestSubscription is the resolver for the testSubscription field.
@@ -40,11 +67,15 @@ func (r *subscriptionResolver) GenericCompletion(ctx context.Context, prompt str
 	return r.genericCompletion(ctx, prompt)
 }
 
+// Mutation returns MutationResolver implementation.
+func (r *Resolver) Mutation() MutationResolver { return &mutationResolver{r} }
+
 // Query returns QueryResolver implementation.
 func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
 // Subscription returns SubscriptionResolver implementation.
 func (r *Resolver) Subscription() SubscriptionResolver { return &subscriptionResolver{r} }
 
+type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
 type subscriptionResolver struct{ *Resolver }

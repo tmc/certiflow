@@ -2,14 +2,169 @@
 
 package model
 
+import (
+	"fmt"
+	"io"
+	"strconv"
+)
+
 type CompletionChunk struct {
 	Text   string `json:"text"`
 	IsLast bool   `json:"isLast"`
 }
 
-type User struct {
-	ID          string `json:"id"`
-	Description string `json:"description"`
+type ControlCategory struct {
+	ID         string       `json:"id"`
+	Title      string       `json:"title"`
+	Version    *string      `json:"version,omitempty"`
+	Objectives []*Objective `json:"objectives,omitempty"`
 }
 
-func (User) IsEntity() {}
+type ControlMapping struct {
+	ControlReferenceID string           `json:"controlReferenceId"`
+	Assessment         *AssessmentLevel `json:"assessment,omitempty"`
+	EvidenceCreator    *string          `json:"evidenceCreator,omitempty"`
+}
+
+type ControlReference struct {
+	ID            string      `json:"id"`
+	Name          string      `json:"name"`
+	Specification string      `json:"specification"`
+	Topics        []*string   `json:"topics,omitempty"`
+	FactorType    *FactorType `json:"factorType,omitempty"`
+	Levels        []*Level    `json:"levels,omitempty"`
+}
+
+type Evidence struct {
+	ID              string            `json:"id"`
+	Text            string            `json:"text"`
+	URL             *string           `json:"url,omitempty"`
+	ControlMappings []*ControlMapping `json:"controlMappings,omitempty"`
+}
+
+type EvidenceInput struct {
+	Text string  `json:"text"`
+	URL  *string `json:"url,omitempty"`
+}
+
+type Level struct {
+	Level                      int           `json:"level"`
+	Factors                    []*FactorType `json:"factors,omitempty"`
+	AuthoritativeSourceMapping []*string     `json:"authoritativeSourceMapping,omitempty"`
+	ImplementationExample      *string       `json:"implementationExample,omitempty"`
+}
+
+type Objective struct {
+	ID                string              `json:"id"`
+	Title             string              `json:"title"`
+	Description       *string             `json:"description,omitempty"`
+	ControlReferences []*ControlReference `json:"controlReferences,omitempty"`
+}
+
+type OrgContextItem struct {
+	Title string `json:"title"`
+	Value string `json:"value"`
+}
+
+type OrgContextItemInput struct {
+	Title string `json:"title"`
+	Value string `json:"value"`
+}
+
+type Organization struct {
+	ID            string            `json:"id"`
+	Name          string            `json:"name"`
+	Context       []*OrgContextItem `json:"context,omitempty"`
+	GoogleDocLink *string           `json:"googleDocLink,omitempty"`
+}
+
+type OrganizationInput struct {
+	Name    string                 `json:"name"`
+	Context []*OrgContextItemInput `json:"context,omitempty"`
+}
+
+type AssessmentLevel string
+
+const (
+	AssessmentLevelNotAssessed        AssessmentLevel = "NOT_ASSESSED"
+	AssessmentLevelPartiallySatisfied AssessmentLevel = "PARTIALLY_SATISFIED"
+	AssessmentLevelSatisfied          AssessmentLevel = "SATISFIED"
+)
+
+var AllAssessmentLevel = []AssessmentLevel{
+	AssessmentLevelNotAssessed,
+	AssessmentLevelPartiallySatisfied,
+	AssessmentLevelSatisfied,
+}
+
+func (e AssessmentLevel) IsValid() bool {
+	switch e {
+	case AssessmentLevelNotAssessed, AssessmentLevelPartiallySatisfied, AssessmentLevelSatisfied:
+		return true
+	}
+	return false
+}
+
+func (e AssessmentLevel) String() string {
+	return string(e)
+}
+
+func (e *AssessmentLevel) UnmarshalGQL(v interface{}) error {
+	str, ok := v.(string)
+	if !ok {
+		return fmt.Errorf("enums must be strings")
+	}
+
+	*e = AssessmentLevel(str)
+	if !e.IsValid() {
+		return fmt.Errorf("%s is not a valid AssessmentLevel", str)
+	}
+	return nil
+}
+
+func (e AssessmentLevel) MarshalGQL(w io.Writer) {
+	fmt.Fprint(w, strconv.Quote(e.String()))
+}
+
+type FactorType string
+
+const (
+	FactorTypeOrganizational FactorType = "ORGANIZATIONAL"
+	FactorTypeSystem         FactorType = "SYSTEM"
+	FactorTypeRegulatory     FactorType = "REGULATORY"
+)
+
+var AllFactorType = []FactorType{
+	FactorTypeOrganizational,
+	FactorTypeSystem,
+	FactorTypeRegulatory,
+}
+
+func (e FactorType) IsValid() bool {
+	switch e {
+	case FactorTypeOrganizational, FactorTypeSystem, FactorTypeRegulatory:
+		return true
+	}
+	return false
+}
+
+func (e FactorType) String() string {
+	return string(e)
+}
+
+func (e *FactorType) UnmarshalGQL(v interface{}) error {
+	str, ok := v.(string)
+	if !ok {
+		return fmt.Errorf("enums must be strings")
+	}
+
+	*e = FactorType(str)
+	if !e.IsValid() {
+		return fmt.Errorf("%s is not a valid FactorType", str)
+	}
+	return nil
+}
+
+func (e FactorType) MarshalGQL(w io.Writer) {
+	fmt.Fprint(w, strconv.Quote(e.String()))
+}
