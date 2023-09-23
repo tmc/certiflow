@@ -22,7 +22,7 @@ import (
 	"github.com/rs/cors"
 )
 
-//go:embed ./csf.json
+//go:embed csf.json
 var data []byte
 
 func main() {
