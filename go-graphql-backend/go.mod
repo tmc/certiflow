@@ -6,7 +6,6 @@ require (
 	github.com/99designs/gqlgen v0.17.31
 	github.com/go-chi/chi v1.5.4
 	github.com/gorilla/websocket v1.5.0
-	github.com/ravilushqa/otelgqlgen v0.13.1
 	github.com/rs/cors v1.9.0
 	github.com/tmc/langchaingo v0.0.0-20230610024316-06cb7b57ea80
 	github.com/vektah/gqlparser/v2 v2.5.1
@@ -27,9 +26,9 @@ require (
 	github.com/hashicorp/golang-lru/v2 v2.0.1 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
+	github.com/stretchr/testify v1.8.4 // indirect
 	github.com/urfave/cli/v2 v2.24.4 // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
-	go.opentelemetry.io/contrib v1.16.1 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/internal/retry v1.16.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.16.0 // indirect
 	go.opentelemetry.io/otel/metric v1.16.0 // indirect

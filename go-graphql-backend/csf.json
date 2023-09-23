@@ -1,0 +1,126 @@
+[{
+    "id": "0",
+    "sectionIdentifier": "0.0",
+    "title": "Information Security Management Program",
+    "version": "HITRUST",
+    "objectives": [
+      {
+        "id": "1",
+        "sectionIdentifier": "0.01",
+        "title": "Information Security Management Program",
+        "description": "To implement and manage an Information Security Management Program.",
+        "controlReferences": [
+          {
+            "id": "1",
+            "sectionIdentifier": "00.a",
+            "name": "Information Security Management Program",
+            "specification": "An Information Security Management Program (ISMP) shall be defined in terms of the characteristics of the business, and established and managed including monitoring, maintenance and improvement.",
+            "topics": [],
+            "factorType": "ORGANIZATIONAL",
+            "levels": [
+              {
+                "level": 1,
+                "factors": ["ORGANIZATIONAL", "SYSTEM", "REGULATORY"],
+                "authoritativeSourceMapping": [
+                  "1 TAC 15 390.2 - 1 TAC § 390.2(a)(1)",
+                  "Banking Requirements - FFIEC IS v2016 A.1.4",
+                  "Banking Requirements - FFIEC IS v2016 A.2.2",
+                  "Banking Requirements - FFIEC IS v2016 A.2.3",
+                  "COBIT 5 APO13.02",
+                  "COBIT 5 DS5.2",
+                  "HIPAA Security Rule - § 164.316(b)(1)(i)",
+                  "HIPAA Security Rule - § 164.316(b)(2)(iii)",
+                  "HITRUST De-ID Framework - De-ID Framework v1 Privacy and Security Program: General",
+                  "ISO/IEC 27001:2013 4.4",
+                  "NIST SP 800-53 r5 - PL-10",
+                  "NIST SP 800-53 r5 - PL-11",
+                  "The Joint Commission (v2016) - TJC IM.02.01.03, EP 1"
+                ],
+                "implementationExample": "The organization has a formal information security management program (ISMP) that is documented and addresses the overall security program of the organization. Management support for the ISMP is demonstrated through signed acceptance or approval by management. The ISMP is based on an accepted industry framework, considers all the control objectives of the accepted industry framework, documents any excluded control objectives of the accepted industry framework and the reasons for their exclusion, and is updated at least annually or when there are significant changes in the environment."
+              },
+              {
+                "level": 2,
+                "factors": ["ORGANIZATIONAL", "SYSTEM", "REGULATORY"],
+                "authoritativeSourceMapping": [
+                  "AICPA Trust Services Criteria - AICPA 2017 CC3.1",
+                  "Banking Requirements - FFIEC IS v2016 A.1.4",
+                  "Banking Requirements - FFIEC IS v2016 A.2.2",
+                  "Banking Requirements - FFIEC IS v2016 A.2.3",
+                  "Banking Requirements - FFIEC IS v2016 A.2.8",
+                  "Banking Requirements - FFIEC IS v2016 A.6.1",
+                  "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PM-01 (HIGH; MOD)",
+                  "COBIT 5 DS5.5",
+                  "COBIT 5 DSS05.07",
+                  "HIPAA Security Rule - § 164.316(a)",
+                  "HIPAA Security Rule - § 164.316(b)(1)(i)",
+                  "ISO/IEC 27001:2013 10.1(c)",
+                  "ISO/IEC 27001:2013 10.2",
+                  "ISO/IEC 27001:2013 4.4",
+                  "ISO/IEC 27001:2013 5.1(a)",
+                  "ISO/IEC 27001:2013 5.2",
+                  "ISO/IEC 27001:2013 5.3",
+                  "ISO/IEC 27001:2013 6.1.1(c)",
+                  "ISO/IEC 27001:2013 6.1.1(d)",
+                  "ISO/IEC 27001:2013 6.1.1(e)",
+                  "ISO/IEC 27001:2013 6.2(e)",
+                  "ISO/IEC 27001:2013 7.1",
+                  "ISO/IEC 27001:2013 7.4",
+                  "ISO/IEC 27001:2013 7.5.1(a)",
+                  "ISO/IEC 27001:2013 7.5.2",
+                  "ISO/IEC 27001:2013 7.5.3",
+                  "ISO/IEC 27001:2013 8.1",
+                  "ISO/IEC 27001:2013 8.2",
+                  "ISO/IEC 27001:2013 8.3",
+                  "ISO/IEC 27001:2013 9.1",
+                  "ISO/IEC 27001:2013 9.2",
+                  "ISO/IEC 27001:2013 9.3(b)",
+                  "ISO/IEC 27001:2013 9.3(f)",
+                  "NIST Cybersecurity Framework v1.1 - PR.IP-7",
+                  "NIST SP 800-53 r5 - PM-17",
+                  "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PM-1a[M]-1",
+                  "South Carolina Insurance Data Security Act (SCIDSA) - SCIDSA 33-99-20(G)",
+                  "The Joint Commission (v2016) - TJC IM.02.01.03, EP 1"
+                ],
+                "implementationExample": "The information security management program (ISMP) has been established, implemented, operational, monitored, reviewed, and maintained. The ISMP is formally documented, protected, controlled, and retained according to federal, state and organizational requirements. The ISMP also incorporates a Plan, Do, Check, ACT (PDCA) cycle for continuous improvement in the ISMP, particularly as information is obtained that could improve the ISMP, or indicates any shortcomings of the ISMP."
+              },
+              {
+                "level": 3,
+                "factors": ["ORGANIZATIONAL", "SYSTEM", "REGULATORY"],
+                "authoritativeSourceMapping": [
+                  "AICPA Trust Services Criteria - AICPA 2017 CC4.1",
+                  "Banking Requirements - FFIEC IS v2016 A.1.4",
+                  "Banking Requirements - FFIEC IS v2016 A.2.3",
+                  "Banking Requirements - FFIEC IS v2016 A.2.8",
+                  "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PM-02 (HIGH; MOD)",
+                  "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PM-03 (HIGH; MOD)",
+                  "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PM-04 (HIGH; MOD)",
+                  "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PM-06 (HIGH; MOD)",
+                  "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PM-09 (HIGH; MOD)",
+                  "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PM-13 (HIGH; MOD)",
+                  "COBIT 5 DS5.5",
+                  "COBIT 5 DSS05.07",
+                  "HIPAA Security Rule - § 164.316(b)(1)(i)",
+                  "ISO/IEC 27001:2013 4.1",
+                  "ISO/IEC 27001:2013 4.2(b)",
+                  "ISO/IEC 27001:2013 5.1(c)",
+                  "ISO/IEC 27001:2013 5.1(d)",
+                  "ISO/IEC 27001:2013 5.1(e)",
+                  "ISO/IEC 27001:2013 5.1(f)",
+                  "ISO/IEC 27001:2013 5.1(g)",
+                  "ISO/IEC 27001:2013 6.1.1",
+                  "ISO/IEC 27001:2013 6.2",
+                  "ISO/IEC 27001:2013 7.2",
+                  "ISO/IEC 27001:2013 7.3(b)",
+                  "ISO/IEC 27001:2013 7.3(c)",
+                  "ISO/IEC 27001:2013 9.3",
+                  "NIST Cybersecurity Framework v1.1 - PR.IP-7"
+                ],
+                "implementationExample": "The information security management program (ISMP) has appropriate resources, roles, and responsibilities defined to establish, implement, operate, monitor, review, and maintain the ISMP. Further, independent audits also determine the continuing suitability, adequacy and effectiveness of the program. The organization continuously improves the ISMP through the use of the information security policy, information security objectives, audit results, analysis of monitored events, corrective and preventative actions and management review. The above requirements are to be formally defined and documented in the policies and/or standards."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

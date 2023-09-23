@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	_ "embed"
+	"encoding/json"
 	"go-graphql-backend/graph"
 	"go-graphql-backend/graph/model"
 	"log"
@@ -18,7 +19,6 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/gorilla/websocket"
-	"github.com/ravilushqa/otelgqlgen"
 	"github.com/rs/cors"
 )
 
@@ -85,9 +85,13 @@ func main() {
 			},
 		},
 	}
+	if err := json.Unmarshal(data, &resolver.Data); err != nil {
+		log.Println(err)
+	}
+
 	s := graph.NewExecutableSchema(graph.Config{Resolvers: resolver})
 	srv := newServer(s)
-	srv.Use(otelgqlgen.Middleware())
+	//srv.Use(otelgqlgen.Middleware())
 
 	router.HandleFunc("/", renderApolloSandbox)
 	router.Handle("/graphql", srv)
