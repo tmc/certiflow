@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	_ "embed"
 	"go-graphql-backend/graph"
 	"go-graphql-backend/graph/model"
 	"log"
@@ -20,6 +21,9 @@ import (
 	"github.com/ravilushqa/otelgqlgen"
 	"github.com/rs/cors"
 )
+
+//go:embed csf.json
+var data []byte
 
 func main() {
 	ctx := context.Background()
@@ -90,10 +94,10 @@ func main() {
 	// Set the context with the span from the request.
 
 	cors := cors.New(cors.Options{
-		AllowedOrigins:   []string{"*"},
-		AllowedMethods:   []string{"GET", "POST"},
-		AllowedHeaders:   []string{"*"},
-		ExposedHeaders:   []string{"Link"},
+		AllowedOrigins: []string{"*"},
+		AllowedMethods: []string{"GET", "POST"},
+		AllowedHeaders: []string{"*"},
+		//ExposedHeaders:   []string{"Link"},
 		AllowCredentials: true,
 		Debug:            true,
 	})
