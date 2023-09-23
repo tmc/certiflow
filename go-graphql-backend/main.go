@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"go-graphql-backend/graph"
+	"go-graphql-backend/graph/model"
 	"log"
 	"net/http"
 	"os"
@@ -13,13 +14,11 @@ import (
 	"github.com/99designs/gqlgen/graphql/handler/extension"
 	"github.com/99designs/gqlgen/graphql/handler/lru"
 	"github.com/99designs/gqlgen/graphql/handler/transport"
-	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/gorilla/websocket"
 	"github.com/ravilushqa/otelgqlgen"
 	"github.com/rs/cors"
-	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 )
 
 func main() {
@@ -47,13 +46,47 @@ func main() {
 	)
 
 	// GraphQL setup
-	resolver := &graph.Resolver{}
+	resolver := &graph.Resolver{
+		Data: []*model.ControlCategory{
+			{
+				ID:      "1",
+				Title:   "Category 1",
+				Version: ref("11.0"),
+				Objectives: []*model.Objective{
+					{
+						ID:          "1",
+						Title:       "Objective 1",
+						Description: ref("Lorem ipsum dolor sit amet, consectetur adipiscing elit. "),
+						ControlReferences: []*model.ControlReference{
+							{
+								ID:         "1",
+								Name:       "Control 1",
+								FactorType: model.FactorTypeOrganizational,
+								Topics: []string{
+									"Topic 1",
+									"Topic 2",
+								},
+								Levels: []*model.Level{
+									{
+										Level:                 1,
+										Factors:               []model.FactorType{},
+										ImplementationExample: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+										//AuthoritativeSourceMapping:
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	}
 	s := graph.NewExecutableSchema(graph.Config{Resolvers: resolver})
 	srv := newServer(s)
 	srv.Use(otelgqlgen.Middleware())
 
-	router.Handle("/", playground.Handler("GraphQL playground", "/graphql"))
-	router.Handle("/graphql", otelhttp.NewHandler(srv, "graphql"))
+	router.HandleFunc("/", renderApolloSandbox)
+	router.Handle("/graphql", srv)
 	// Set the context with the span from the request.
 
 	cors := cors.New(cors.Options{
@@ -65,7 +98,7 @@ func main() {
 		// Debug:            true,
 	})
 
-	log.Printf("Listening on localhost:%s", port)
+	log.Printf("Listening on http://localhost:%s", port)
 	log.Fatal(http.ListenAndServe(":"+port, cors.Handler(router)))
 }
 
@@ -93,4 +126,8 @@ func newServer(es graphql.ExecutableSchema) *handler.Server {
 	})
 
 	return srv
+}
+
+func ref[T any](v T) *T {
+	return &v
 }

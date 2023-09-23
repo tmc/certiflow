@@ -45,6 +45,7 @@ type Mutation {
 # Represents a category of controls, associated with a HITRUST version
 type ControlCategory {
   id: ID!
+  sectionIdentifier: String!
   title: String!
   version: String # Represents HITRUST version
   objectives: [Objective]
@@ -53,19 +54,21 @@ type ControlCategory {
 # Describes a specific objective within a control category
 type Objective {
   id: ID!
+  sectionIdentifier: String!
   title: String!
   description: String
-  controlReferences: [ControlReference]
+  controlReferences: [ControlReference!]!
 }
 
 # Provides detailed information about a reference associated with an objective
 type ControlReference {
   id: ID!
+  sectionIdentifier: String!
   name: String!
   specification: String!
-  topics: [String]
-  factorType: FactorType
-  levels: [Level]
+  topics: [String!]!
+  factorType: FactorType!
+  levels: [Level!]!
 }
 
 # Enumerates the possible factor types
@@ -78,9 +81,9 @@ enum FactorType {
 # Describes a specific level, which might have multiple factor types and authoritative sources
 type Level {
   level: Int! # Assuming values like 1, 2, 3
-  factors: [FactorType]
-  authoritativeSourceMapping: [String]
-  implementationExample: String
+  factors: [FactorType!]!
+  authoritativeSourceMapping: [String!]!
+  implementationExample: String!
 }
 
 # Represents a piece of evidence associated with a control

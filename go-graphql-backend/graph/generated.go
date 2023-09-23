@@ -53,10 +53,11 @@ type ComplexityRoot struct {
 	}
 
 	ControlCategory struct {
-		ID         func(childComplexity int) int
-		Objectives func(childComplexity int) int
-		Title      func(childComplexity int) int
-		Version    func(childComplexity int) int
+		ID                func(childComplexity int) int
+		Objectives        func(childComplexity int) int
+		SectionIdentifier func(childComplexity int) int
+		Title             func(childComplexity int) int
+		Version           func(childComplexity int) int
 	}
 
 	ControlMapping struct {
@@ -66,12 +67,13 @@ type ComplexityRoot struct {
 	}
 
 	ControlReference struct {
-		FactorType    func(childComplexity int) int
-		ID            func(childComplexity int) int
-		Levels        func(childComplexity int) int
-		Name          func(childComplexity int) int
-		Specification func(childComplexity int) int
-		Topics        func(childComplexity int) int
+		FactorType        func(childComplexity int) int
+		ID                func(childComplexity int) int
+		Levels            func(childComplexity int) int
+		Name              func(childComplexity int) int
+		SectionIdentifier func(childComplexity int) int
+		Specification     func(childComplexity int) int
+		Topics            func(childComplexity int) int
 	}
 
 	Evidence struct {
@@ -98,6 +100,7 @@ type ComplexityRoot struct {
 		ControlReferences func(childComplexity int) int
 		Description       func(childComplexity int) int
 		ID                func(childComplexity int) int
+		SectionIdentifier func(childComplexity int) int
 		Title             func(childComplexity int) int
 	}
 
@@ -190,6 +193,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ControlCategory.Objectives(childComplexity), true
 
+	case "ControlCategory.sectionIdentifier":
+		if e.complexity.ControlCategory.SectionIdentifier == nil {
+			break
+		}
+
+		return e.complexity.ControlCategory.SectionIdentifier(childComplexity), true
+
 	case "ControlCategory.title":
 		if e.complexity.ControlCategory.Title == nil {
 			break
@@ -252,6 +262,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.ControlReference.Name(childComplexity), true
+
+	case "ControlReference.sectionIdentifier":
+		if e.complexity.ControlReference.SectionIdentifier == nil {
+			break
+		}
+
+		return e.complexity.ControlReference.SectionIdentifier(childComplexity), true
 
 	case "ControlReference.specification":
 		if e.complexity.ControlReference.Specification == nil {
@@ -379,6 +396,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Objective.ID(childComplexity), true
+
+	case "Objective.sectionIdentifier":
+		if e.complexity.Objective.SectionIdentifier == nil {
+			break
+		}
+
+		return e.complexity.Objective.SectionIdentifier(childComplexity), true
 
 	case "Objective.title":
 		if e.complexity.Objective.Title == nil {
@@ -640,6 +664,7 @@ type Mutation {
 # Represents a category of controls, associated with a HITRUST version
 type ControlCategory {
   id: ID!
+  sectionIdentifier: String!
   title: String!
   version: String # Represents HITRUST version
   objectives: [Objective]
@@ -648,19 +673,21 @@ type ControlCategory {
 # Describes a specific objective within a control category
 type Objective {
   id: ID!
+  sectionIdentifier: String!
   title: String!
   description: String
-  controlReferences: [ControlReference]
+  controlReferences: [ControlReference!]!
 }
 
 # Provides detailed information about a reference associated with an objective
 type ControlReference {
   id: ID!
+  sectionIdentifier: String!
   name: String!
   specification: String!
-  topics: [String]
-  factorType: FactorType
-  levels: [Level]
+  topics: [String!]!
+  factorType: FactorType!
+  levels: [Level!]!
 }
 
 # Enumerates the possible factor types
@@ -673,9 +700,9 @@ enum FactorType {
 # Describes a specific level, which might have multiple factor types and authoritative sources
 type Level {
   level: Int! # Assuming values like 1, 2, 3
-  factors: [FactorType]
-  authoritativeSourceMapping: [String]
-  implementationExample: String
+  factors: [FactorType!]!
+  authoritativeSourceMapping: [String!]!
+  implementationExample: String!
 }
 
 # Represents a piece of evidence associated with a control
@@ -1063,6 +1090,50 @@ func (ec *executionContext) fieldContext_ControlCategory_id(ctx context.Context,
 	return fc, nil
 }
 
+func (ec *executionContext) _ControlCategory_sectionIdentifier(ctx context.Context, field graphql.CollectedField, obj *model.ControlCategory) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ControlCategory_sectionIdentifier(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.SectionIdentifier, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	fc.Result = res
+	return ec.marshalNString2string(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ControlCategory_sectionIdentifier(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ControlCategory",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ControlCategory_title(ctx context.Context, field graphql.CollectedField, obj *model.ControlCategory) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ControlCategory_title(ctx, field)
 	if err != nil {
@@ -1186,6 +1257,8 @@ func (ec *executionContext) fieldContext_ControlCategory_objectives(ctx context.
 			switch field.Name {
 			case "id":
 				return ec.fieldContext_Objective_id(ctx, field)
+			case "sectionIdentifier":
+				return ec.fieldContext_Objective_sectionIdentifier(ctx, field)
 			case "title":
 				return ec.fieldContext_Objective_title(ctx, field)
 			case "description":
@@ -1369,6 +1442,50 @@ func (ec *executionContext) fieldContext_ControlReference_id(ctx context.Context
 	return fc, nil
 }
 
+func (ec *executionContext) _ControlReference_sectionIdentifier(ctx context.Context, field graphql.CollectedField, obj *model.ControlReference) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ControlReference_sectionIdentifier(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.SectionIdentifier, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	fc.Result = res
+	return ec.marshalNString2string(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ControlReference_sectionIdentifier(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ControlReference",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _ControlReference_name(ctx context.Context, field graphql.CollectedField, obj *model.ControlReference) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_ControlReference_name(ctx, field)
 	if err != nil {
@@ -1478,11 +1595,14 @@ func (ec *executionContext) _ControlReference_topics(ctx context.Context, field 
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
-	res := resTmp.([]*string)
+	res := resTmp.([]string)
 	fc.Result = res
-	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
+	return ec.marshalNString2ᚕstringᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ControlReference_topics(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1519,11 +1639,14 @@ func (ec *executionContext) _ControlReference_factorType(ctx context.Context, fi
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
-	res := resTmp.(*model.FactorType)
+	res := resTmp.(model.FactorType)
 	fc.Result = res
-	return ec.marshalOFactorType2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorType(ctx, field.Selections, res)
+	return ec.marshalNFactorType2goᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ControlReference_factorType(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1560,11 +1683,14 @@ func (ec *executionContext) _ControlReference_levels(ctx context.Context, field 
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.([]*model.Level)
 	fc.Result = res
-	return ec.marshalOLevel2ᚕᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐLevel(ctx, field.Selections, res)
+	return ec.marshalNLevel2ᚕᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐLevelᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ControlReference_levels(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1833,11 +1959,14 @@ func (ec *executionContext) _Level_factors(ctx context.Context, field graphql.Co
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
-	res := resTmp.([]*model.FactorType)
+	res := resTmp.([]model.FactorType)
 	fc.Result = res
-	return ec.marshalOFactorType2ᚕᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorType(ctx, field.Selections, res)
+	return ec.marshalNFactorType2ᚕgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorTypeᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Level_factors(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1874,11 +2003,14 @@ func (ec *executionContext) _Level_authoritativeSourceMapping(ctx context.Contex
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
-	res := resTmp.([]*string)
+	res := resTmp.([]string)
 	fc.Result = res
-	return ec.marshalOString2ᚕᚖstring(ctx, field.Selections, res)
+	return ec.marshalNString2ᚕstringᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Level_authoritativeSourceMapping(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1915,11 +2047,14 @@ func (ec *executionContext) _Level_implementationExample(ctx context.Context, fi
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
-	res := resTmp.(*string)
+	res := resTmp.(string)
 	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+	return ec.marshalNString2string(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Level_implementationExample(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2165,6 +2300,50 @@ func (ec *executionContext) fieldContext_Objective_id(ctx context.Context, field
 	return fc, nil
 }
 
+func (ec *executionContext) _Objective_sectionIdentifier(ctx context.Context, field graphql.CollectedField, obj *model.Objective) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Objective_sectionIdentifier(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.SectionIdentifier, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	fc.Result = res
+	return ec.marshalNString2string(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Objective_sectionIdentifier(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Objective",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Objective_title(ctx context.Context, field graphql.CollectedField, obj *model.Objective) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Objective_title(ctx, field)
 	if err != nil {
@@ -2271,11 +2450,14 @@ func (ec *executionContext) _Objective_controlReferences(ctx context.Context, fi
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.([]*model.ControlReference)
 	fc.Result = res
-	return ec.marshalOControlReference2ᚕᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐControlReference(ctx, field.Selections, res)
+	return ec.marshalNControlReference2ᚕᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐControlReferenceᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Objective_controlReferences(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2288,6 +2470,8 @@ func (ec *executionContext) fieldContext_Objective_controlReferences(ctx context
 			switch field.Name {
 			case "id":
 				return ec.fieldContext_ControlReference_id(ctx, field)
+			case "sectionIdentifier":
+				return ec.fieldContext_ControlReference_sectionIdentifier(ctx, field)
 			case "name":
 				return ec.fieldContext_ControlReference_name(ctx, field)
 			case "specification":
@@ -2607,6 +2791,8 @@ func (ec *executionContext) fieldContext_Query_getControlCategory(ctx context.Co
 			switch field.Name {
 			case "id":
 				return ec.fieldContext_ControlCategory_id(ctx, field)
+			case "sectionIdentifier":
+				return ec.fieldContext_ControlCategory_sectionIdentifier(ctx, field)
 			case "title":
 				return ec.fieldContext_ControlCategory_title(ctx, field)
 			case "version":
@@ -2672,6 +2858,8 @@ func (ec *executionContext) fieldContext_Query_allControlCategories(ctx context.
 			switch field.Name {
 			case "id":
 				return ec.fieldContext_ControlCategory_id(ctx, field)
+			case "sectionIdentifier":
+				return ec.fieldContext_ControlCategory_sectionIdentifier(ctx, field)
 			case "title":
 				return ec.fieldContext_ControlCategory_title(ctx, field)
 			case "version":
@@ -5104,6 +5292,13 @@ func (ec *executionContext) _ControlCategory(ctx context.Context, sel ast.Select
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
+		case "sectionIdentifier":
+
+			out.Values[i] = ec._ControlCategory_sectionIdentifier(ctx, field, obj)
+
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		case "title":
 
 			out.Values[i] = ec._ControlCategory_title(ctx, field, obj)
@@ -5183,6 +5378,13 @@ func (ec *executionContext) _ControlReference(ctx context.Context, sel ast.Selec
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
+		case "sectionIdentifier":
+
+			out.Values[i] = ec._ControlReference_sectionIdentifier(ctx, field, obj)
+
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		case "name":
 
 			out.Values[i] = ec._ControlReference_name(ctx, field, obj)
@@ -5201,14 +5403,23 @@ func (ec *executionContext) _ControlReference(ctx context.Context, sel ast.Selec
 
 			out.Values[i] = ec._ControlReference_topics(ctx, field, obj)
 
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		case "factorType":
 
 			out.Values[i] = ec._ControlReference_factorType(ctx, field, obj)
 
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		case "levels":
 
 			out.Values[i] = ec._ControlReference_levels(ctx, field, obj)
 
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -5284,14 +5495,23 @@ func (ec *executionContext) _Level(ctx context.Context, sel ast.SelectionSet, ob
 
 			out.Values[i] = ec._Level_factors(ctx, field, obj)
 
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		case "authoritativeSourceMapping":
 
 			out.Values[i] = ec._Level_authoritativeSourceMapping(ctx, field, obj)
 
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		case "implementationExample":
 
 			out.Values[i] = ec._Level_implementationExample(ctx, field, obj)
 
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -5368,6 +5588,13 @@ func (ec *executionContext) _Objective(ctx context.Context, sel ast.SelectionSet
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
+		case "sectionIdentifier":
+
+			out.Values[i] = ec._Objective_sectionIdentifier(ctx, field, obj)
+
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		case "title":
 
 			out.Values[i] = ec._Objective_title(ctx, field, obj)
@@ -5383,6 +5610,9 @@ func (ec *executionContext) _Objective(ctx context.Context, sel ast.SelectionSet
 
 			out.Values[i] = ec._Objective_controlReferences(ctx, field, obj)
 
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -6054,6 +6284,131 @@ func (ec *executionContext) marshalNControlCategory2ᚖgoᚑgraphqlᚑbackendᚋ
 	return ec._ControlCategory(ctx, sel, v)
 }
 
+func (ec *executionContext) marshalNControlReference2ᚕᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐControlReferenceᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.ControlReference) graphql.Marshaler {
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalNControlReference2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐControlReference(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	for _, e := range ret {
+		if e == graphql.Null {
+			return graphql.Null
+		}
+	}
+
+	return ret
+}
+
+func (ec *executionContext) marshalNControlReference2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐControlReference(ctx context.Context, sel ast.SelectionSet, v *model.ControlReference) graphql.Marshaler {
+	if v == nil {
+		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
+			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
+		}
+		return graphql.Null
+	}
+	return ec._ControlReference(ctx, sel, v)
+}
+
+func (ec *executionContext) unmarshalNFactorType2goᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorType(ctx context.Context, v interface{}) (model.FactorType, error) {
+	var res model.FactorType
+	err := res.UnmarshalGQL(v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalNFactorType2goᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorType(ctx context.Context, sel ast.SelectionSet, v model.FactorType) graphql.Marshaler {
+	return v
+}
+
+func (ec *executionContext) unmarshalNFactorType2ᚕgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorTypeᚄ(ctx context.Context, v interface{}) ([]model.FactorType, error) {
+	var vSlice []interface{}
+	if v != nil {
+		vSlice = graphql.CoerceList(v)
+	}
+	var err error
+	res := make([]model.FactorType, len(vSlice))
+	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
+		res[i], err = ec.unmarshalNFactorType2goᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorType(ctx, vSlice[i])
+		if err != nil {
+			return nil, err
+		}
+	}
+	return res, nil
+}
+
+func (ec *executionContext) marshalNFactorType2ᚕgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorTypeᚄ(ctx context.Context, sel ast.SelectionSet, v []model.FactorType) graphql.Marshaler {
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalNFactorType2goᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorType(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	for _, e := range ret {
+		if e == graphql.Null {
+			return graphql.Null
+		}
+	}
+
+	return ret
+}
+
 func (ec *executionContext) unmarshalNID2string(ctx context.Context, v interface{}) (string, error) {
 	res, err := graphql.UnmarshalID(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -6084,6 +6439,60 @@ func (ec *executionContext) marshalNInt2int(ctx context.Context, sel ast.Selecti
 	return res
 }
 
+func (ec *executionContext) marshalNLevel2ᚕᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐLevelᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Level) graphql.Marshaler {
+	ret := make(graphql.Array, len(v))
+	var wg sync.WaitGroup
+	isLen1 := len(v) == 1
+	if !isLen1 {
+		wg.Add(len(v))
+	}
+	for i := range v {
+		i := i
+		fc := &graphql.FieldContext{
+			Index:  &i,
+			Result: &v[i],
+		}
+		ctx := graphql.WithFieldContext(ctx, fc)
+		f := func(i int) {
+			defer func() {
+				if r := recover(); r != nil {
+					ec.Error(ctx, ec.Recover(ctx, r))
+					ret = nil
+				}
+			}()
+			if !isLen1 {
+				defer wg.Done()
+			}
+			ret[i] = ec.marshalNLevel2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐLevel(ctx, sel, v[i])
+		}
+		if isLen1 {
+			f(i)
+		} else {
+			go f(i)
+		}
+
+	}
+	wg.Wait()
+
+	for _, e := range ret {
+		if e == graphql.Null {
+			return graphql.Null
+		}
+	}
+
+	return ret
+}
+
+func (ec *executionContext) marshalNLevel2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐLevel(ctx context.Context, sel ast.SelectionSet, v *model.Level) graphql.Marshaler {
+	if v == nil {
+		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
+			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
+		}
+		return graphql.Null
+	}
+	return ec._Level(ctx, sel, v)
+}
+
 func (ec *executionContext) unmarshalNString2string(ctx context.Context, v interface{}) (string, error) {
 	res, err := graphql.UnmarshalString(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -6097,6 +6506,38 @@ func (ec *executionContext) marshalNString2string(ctx context.Context, sel ast.S
 		}
 	}
 	return res
+}
+
+func (ec *executionContext) unmarshalNString2ᚕstringᚄ(ctx context.Context, v interface{}) ([]string, error) {
+	var vSlice []interface{}
+	if v != nil {
+		vSlice = graphql.CoerceList(v)
+	}
+	var err error
+	res := make([]string, len(vSlice))
+	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
+		res[i], err = ec.unmarshalNString2string(ctx, vSlice[i])
+		if err != nil {
+			return nil, err
+		}
+	}
+	return res, nil
+}
+
+func (ec *executionContext) marshalNString2ᚕstringᚄ(ctx context.Context, sel ast.SelectionSet, v []string) graphql.Marshaler {
+	ret := make(graphql.Array, len(v))
+	for i := range v {
+		ret[i] = ec.marshalNString2string(ctx, sel, v[i])
+	}
+
+	for _, e := range ret {
+		if e == graphql.Null {
+			return graphql.Null
+		}
+	}
+
+	return ret
 }
 
 func (ec *executionContext) unmarshalN_FieldSet2string(ctx context.Context, v interface{}) (string, error) {
@@ -6475,54 +6916,6 @@ func (ec *executionContext) marshalOControlMapping2ᚖgoᚑgraphqlᚑbackendᚋg
 	return ec._ControlMapping(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOControlReference2ᚕᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐControlReference(ctx context.Context, sel ast.SelectionSet, v []*model.ControlReference) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	ret := make(graphql.Array, len(v))
-	var wg sync.WaitGroup
-	isLen1 := len(v) == 1
-	if !isLen1 {
-		wg.Add(len(v))
-	}
-	for i := range v {
-		i := i
-		fc := &graphql.FieldContext{
-			Index:  &i,
-			Result: &v[i],
-		}
-		ctx := graphql.WithFieldContext(ctx, fc)
-		f := func(i int) {
-			defer func() {
-				if r := recover(); r != nil {
-					ec.Error(ctx, ec.Recover(ctx, r))
-					ret = nil
-				}
-			}()
-			if !isLen1 {
-				defer wg.Done()
-			}
-			ret[i] = ec.marshalOControlReference2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐControlReference(ctx, sel, v[i])
-		}
-		if isLen1 {
-			f(i)
-		} else {
-			go f(i)
-		}
-
-	}
-	wg.Wait()
-
-	return ret
-}
-
-func (ec *executionContext) marshalOControlReference2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐControlReference(ctx context.Context, sel ast.SelectionSet, v *model.ControlReference) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._ControlReference(ctx, sel, v)
-}
-
 func (ec *executionContext) marshalOEvidence2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐEvidence(ctx context.Context, sel ast.SelectionSet, v *model.Evidence) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -6536,131 +6929,6 @@ func (ec *executionContext) unmarshalOEvidenceInput2ᚖgoᚑgraphqlᚑbackendᚋ
 	}
 	res, err := ec.unmarshalInputEvidenceInput(ctx, v)
 	return &res, graphql.ErrorOnPath(ctx, err)
-}
-
-func (ec *executionContext) unmarshalOFactorType2ᚕᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorType(ctx context.Context, v interface{}) ([]*model.FactorType, error) {
-	if v == nil {
-		return nil, nil
-	}
-	var vSlice []interface{}
-	if v != nil {
-		vSlice = graphql.CoerceList(v)
-	}
-	var err error
-	res := make([]*model.FactorType, len(vSlice))
-	for i := range vSlice {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
-		res[i], err = ec.unmarshalOFactorType2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorType(ctx, vSlice[i])
-		if err != nil {
-			return nil, err
-		}
-	}
-	return res, nil
-}
-
-func (ec *executionContext) marshalOFactorType2ᚕᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorType(ctx context.Context, sel ast.SelectionSet, v []*model.FactorType) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	ret := make(graphql.Array, len(v))
-	var wg sync.WaitGroup
-	isLen1 := len(v) == 1
-	if !isLen1 {
-		wg.Add(len(v))
-	}
-	for i := range v {
-		i := i
-		fc := &graphql.FieldContext{
-			Index:  &i,
-			Result: &v[i],
-		}
-		ctx := graphql.WithFieldContext(ctx, fc)
-		f := func(i int) {
-			defer func() {
-				if r := recover(); r != nil {
-					ec.Error(ctx, ec.Recover(ctx, r))
-					ret = nil
-				}
-			}()
-			if !isLen1 {
-				defer wg.Done()
-			}
-			ret[i] = ec.marshalOFactorType2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorType(ctx, sel, v[i])
-		}
-		if isLen1 {
-			f(i)
-		} else {
-			go f(i)
-		}
-
-	}
-	wg.Wait()
-
-	return ret
-}
-
-func (ec *executionContext) unmarshalOFactorType2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorType(ctx context.Context, v interface{}) (*model.FactorType, error) {
-	if v == nil {
-		return nil, nil
-	}
-	var res = new(model.FactorType)
-	err := res.UnmarshalGQL(v)
-	return res, graphql.ErrorOnPath(ctx, err)
-}
-
-func (ec *executionContext) marshalOFactorType2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorType(ctx context.Context, sel ast.SelectionSet, v *model.FactorType) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return v
-}
-
-func (ec *executionContext) marshalOLevel2ᚕᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐLevel(ctx context.Context, sel ast.SelectionSet, v []*model.Level) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	ret := make(graphql.Array, len(v))
-	var wg sync.WaitGroup
-	isLen1 := len(v) == 1
-	if !isLen1 {
-		wg.Add(len(v))
-	}
-	for i := range v {
-		i := i
-		fc := &graphql.FieldContext{
-			Index:  &i,
-			Result: &v[i],
-		}
-		ctx := graphql.WithFieldContext(ctx, fc)
-		f := func(i int) {
-			defer func() {
-				if r := recover(); r != nil {
-					ec.Error(ctx, ec.Recover(ctx, r))
-					ret = nil
-				}
-			}()
-			if !isLen1 {
-				defer wg.Done()
-			}
-			ret[i] = ec.marshalOLevel2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐLevel(ctx, sel, v[i])
-		}
-		if isLen1 {
-			f(i)
-		} else {
-			go f(i)
-		}
-
-	}
-	wg.Wait()
-
-	return ret
-}
-
-func (ec *executionContext) marshalOLevel2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐLevel(ctx context.Context, sel ast.SelectionSet, v *model.Level) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._Level(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOObjective2ᚕᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐObjective(ctx context.Context, sel ast.SelectionSet, v []*model.Objective) graphql.Marshaler {
@@ -6845,38 +7113,6 @@ func (ec *executionContext) marshalOString2ᚕstringᚄ(ctx context.Context, sel
 		if e == graphql.Null {
 			return graphql.Null
 		}
-	}
-
-	return ret
-}
-
-func (ec *executionContext) unmarshalOString2ᚕᚖstring(ctx context.Context, v interface{}) ([]*string, error) {
-	if v == nil {
-		return nil, nil
-	}
-	var vSlice []interface{}
-	if v != nil {
-		vSlice = graphql.CoerceList(v)
-	}
-	var err error
-	res := make([]*string, len(vSlice))
-	for i := range vSlice {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
-		res[i], err = ec.unmarshalOString2ᚖstring(ctx, vSlice[i])
-		if err != nil {
-			return nil, err
-		}
-	}
-	return res, nil
-}
-
-func (ec *executionContext) marshalOString2ᚕᚖstring(ctx context.Context, sel ast.SelectionSet, v []*string) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	ret := make(graphql.Array, len(v))
-	for i := range v {
-		ret[i] = ec.marshalOString2ᚖstring(ctx, sel, v[i])
 	}
 
 	return ret

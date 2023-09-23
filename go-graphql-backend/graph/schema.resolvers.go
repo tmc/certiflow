@@ -28,12 +28,17 @@ func (r *mutationResolver) CreateOrganization(ctx context.Context, input *model.
 
 // GetControlCategory is the resolver for the getControlCategory field.
 func (r *queryResolver) GetControlCategory(ctx context.Context, id string) (*model.ControlCategory, error) {
-	panic(fmt.Errorf("not implemented: GetControlCategory - getControlCategory"))
+	for _, c := range r.Data {
+		if c.ID == id {
+			return c, nil
+		}
+	}
+	return nil, fmt.Errorf("control category not found")
 }
 
 // AllControlCategories is the resolver for the allControlCategories field.
 func (r *queryResolver) AllControlCategories(ctx context.Context) ([]*model.ControlCategory, error) {
-	panic(fmt.Errorf("not implemented: AllControlCategories - allControlCategories"))
+	return r.Data, nil
 }
 
 // GetEvidence is the resolver for the getEvidence field.
