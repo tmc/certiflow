@@ -91,11 +91,11 @@ func main() {
 
 	cors := cors.New(cors.Options{
 		AllowedOrigins:   []string{"*"},
-		AllowedMethods:   []string{"*"},
+		AllowedMethods:   []string{"GET", "POST"},
 		AllowedHeaders:   []string{"*"},
 		ExposedHeaders:   []string{"Link"},
 		AllowCredentials: true,
-		// Debug:            true,
+		Debug:            true,
 	})
 
 	log.Printf("Listening on http://localhost:%s", port)

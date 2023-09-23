@@ -17,6 +17,16 @@ const allControlCategoriesDocument = graphql(`
   query allControlCategories {
     allControlCategories {
       id
+      title
+      objectives {
+        id
+        title
+        controlReferences {
+            id
+            name
+            specification
+        }
+      }
     }
   }
 `);
@@ -65,10 +75,11 @@ const allControlCategoriesDocument = graphql(`
 export default function ItemList() {
     const { data } = useQuery(allControlCategoriesDocument);
     console.log(data)
+    const categories = data?.allControlCategories
     return (
         <ScrollArea className="h-[100%] w-[350px] rounded-md border p-4">
-            {/* <Accordion type="multiple">
-                {data!.map((item) => {
+            <Accordion type="multiple">
+                {categories!.map((item) => {
                     return (
                         <AccordionItem value={item!.id}>
                             <AccordionTrigger>{item!.title}</AccordionTrigger>
@@ -95,8 +106,8 @@ export default function ItemList() {
                             </AccordionContent>
                         </AccordionItem>
                     )
-                })} */}
-            {/* </Accordion> */}
+                })}
+            </Accordion>
         </ScrollArea >
     )
 }

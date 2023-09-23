@@ -172,18 +172,10 @@ export type SubscriptionGenericCompletionArgs = {
   prompt: Scalars['String']['input'];
 };
 
-export type GetControlCategoryQueryVariables = Exact<{
-  id: Scalars['ID']['input'];
-}>;
-
-
-export type GetControlCategoryQuery = { __typename?: 'Query', getControlCategory?: { __typename?: 'ControlCategory', id: string } | null };
-
 export type AllControlCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AllControlCategoriesQuery = { __typename?: 'Query', allControlCategories: Array<{ __typename?: 'ControlCategory', id: string }> };
+export type AllControlCategoriesQuery = { __typename?: 'Query', allControlCategories: Array<{ __typename?: 'ControlCategory', id: string, title: string, objectives?: Array<{ __typename?: 'Objective', id: string, title: string, controlReferences: Array<{ __typename?: 'ControlReference', id: string, name: string, specification: string }> } | null> | null }> };
 
 
-export const GetControlCategoryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getControlCategory"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getControlCategory"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<GetControlCategoryQuery, GetControlCategoryQueryVariables>;
-export const AllControlCategoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"allControlCategories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allControlCategories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<AllControlCategoriesQuery, AllControlCategoriesQueryVariables>;
+export const AllControlCategoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"allControlCategories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allControlCategories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"objectives"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"controlReferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"specification"}}]}}]}}]}}]}}]} as unknown as DocumentNode<AllControlCategoriesQuery, AllControlCategoriesQueryVariables>;
