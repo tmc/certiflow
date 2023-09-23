@@ -14,10 +14,11 @@ type CompletionChunk struct {
 }
 
 type ControlCategory struct {
-	ID         string       `json:"id"`
-	Title      string       `json:"title"`
-	Version    *string      `json:"version,omitempty"`
-	Objectives []*Objective `json:"objectives,omitempty"`
+	ID                string       `json:"id"`
+	SectionIdentifier string       `json:"sectionIdentifier"`
+	Title             string       `json:"title"`
+	Version           *string      `json:"version,omitempty"`
+	Objectives        []*Objective `json:"objectives,omitempty"`
 }
 
 type ControlMapping struct {
@@ -27,12 +28,13 @@ type ControlMapping struct {
 }
 
 type ControlReference struct {
-	ID            string      `json:"id"`
-	Name          string      `json:"name"`
-	Specification string      `json:"specification"`
-	Topics        []*string   `json:"topics,omitempty"`
-	FactorType    *FactorType `json:"factorType,omitempty"`
-	Levels        []*Level    `json:"levels,omitempty"`
+	ID                string     `json:"id"`
+	SectionIdentifier string     `json:"sectionIdentifier"`
+	Name              string     `json:"name"`
+	Specification     string     `json:"specification"`
+	Topics            []string   `json:"topics"`
+	FactorType        FactorType `json:"factorType"`
+	Levels            []*Level   `json:"levels"`
 }
 
 type Evidence struct {
@@ -48,17 +50,18 @@ type EvidenceInput struct {
 }
 
 type Level struct {
-	Level                      int           `json:"level"`
-	Factors                    []*FactorType `json:"factors,omitempty"`
-	AuthoritativeSourceMapping []*string     `json:"authoritativeSourceMapping,omitempty"`
-	ImplementationExample      *string       `json:"implementationExample,omitempty"`
+	Level                      int          `json:"level"`
+	Factors                    []FactorType `json:"factors"`
+	AuthoritativeSourceMapping []string     `json:"authoritativeSourceMapping"`
+	ImplementationExample      string       `json:"implementationExample"`
 }
 
 type Objective struct {
 	ID                string              `json:"id"`
+	SectionIdentifier string              `json:"sectionIdentifier"`
 	Title             string              `json:"title"`
 	Description       *string             `json:"description,omitempty"`
-	ControlReferences []*ControlReference `json:"controlReferences,omitempty"`
+	ControlReferences []*ControlReference `json:"controlReferences"`
 }
 
 type OrgContextItem struct {

@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"go-graphql-backend/graph"
+	"go-graphql-backend/graph/model"
 	"log"
 	"net/http"
 	"os"
@@ -45,7 +46,41 @@ func main() {
 	)
 
 	// GraphQL setup
-	resolver := &graph.Resolver{}
+	resolver := &graph.Resolver{
+		Data: []*model.ControlCategory{
+			{
+				ID:      "1",
+				Title:   "Category 1",
+				Version: ref("11.0"),
+				Objectives: []*model.Objective{
+					{
+						ID:          "1",
+						Title:       "Objective 1",
+						Description: ref("Lorem ipsum dolor sit amet, consectetur adipiscing elit. "),
+						ControlReferences: []*model.ControlReference{
+							{
+								ID:         "1",
+								Name:       "Control 1",
+								FactorType: model.FactorTypeOrganizational,
+								Topics: []string{
+									"Topic 1",
+									"Topic 2",
+								},
+								Levels: []*model.Level{
+									{
+										Level:                 1,
+										Factors:               []model.FactorType{},
+										ImplementationExample: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+										//AuthoritativeSourceMapping:
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	}
 	s := graph.NewExecutableSchema(graph.Config{Resolvers: resolver})
 	srv := newServer(s)
 	srv.Use(otelgqlgen.Middleware())
@@ -91,4 +126,8 @@ func newServer(es graphql.ExecutableSchema) *handler.Server {
 	})
 
 	return srv
+}
+
+func ref[T any](v T) *T {
+	return &v
 }
