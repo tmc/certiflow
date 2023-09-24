@@ -1602,46 +1602,46 @@
                             {
                                 "level": 3,
                                 "organizationalFactors": [
-                                  "Number of Licensed Beds: Greater than 750 Beds",
-                                  "Number of Covered Lives: Greater than 7.5 Million Lives",
-                                  "Number of transactions received and sent annually: More than 6 Million Transactions",
-                                  "Number of Admitted Patients annually: More than 20k Patients",
-                                  "Total Terabytes of Data Held: More than 60 Terabytes(TB)",
-                                  "Volume of Data Exchanged Annually: More than 100 Megabytes(MB)",
-                                  "Number of prescriptions filled annually: Greater than 60 million Prescriptions",
-                                  "Number of Physicians on staff: Greater than 25 Physicians",
-                                  "Number of Patient Encounters Annually: Greater than 180k Encounters",
-                                  "Number of Individual Records that are processed annually: More than 725k Records",
-                                  "Number of Records that are currently held: More than 60 Million Records"
+                                    "Number of Licensed Beds: Greater than 750 Beds",
+                                    "Number of Covered Lives: Greater than 7.5 Million Lives",
+                                    "Number of transactions received and sent annually: More than 6 Million Transactions",
+                                    "Number of Admitted Patients annually: More than 20k Patients",
+                                    "Total Terabytes of Data Held: More than 60 Terabytes(TB)",
+                                    "Volume of Data Exchanged Annually: More than 100 Megabytes(MB)",
+                                    "Number of prescriptions filled annually: Greater than 60 million Prescriptions",
+                                    "Number of Physicians on staff: Greater than 25 Physicians",
+                                    "Number of Patient Encounters Annually: Greater than 180k Encounters",
+                                    "Number of Individual Records that are processed annually: More than 725k Records",
+                                    "Number of Records that are currently held: More than 60 Million Records"
                                 ],
                                 "systemFactors": [],
                                 "regulatoryFactors": [
-                                  "FedRAMP",
-                                  "FISMA",
-                                  "IRS Pub. 1075",
-                                  "MARS-E v2.0",
-                                  "Banking Requirements",
-                                  "NY OHIP Moderate-plus Security Baselines v3.1",
-                                  "Texas Medical Records Privacy Act",
-                                  "CMS Minimum Security Requirements (High)"
+                                    "FedRAMP",
+                                    "FISMA",
+                                    "IRS Pub. 1075",
+                                    "MARS-E v2.0",
+                                    "Banking Requirements",
+                                    "NY OHIP Moderate-plus Security Baselines v3.1",
+                                    "Texas Medical Records Privacy Act",
+                                    "CMS Minimum Security Requirements (High)"
                                 ],
                                 "authoritativeSourceMapping": [
-                                  "1 TAC 15 390.2 - 1 TAC § 390.2(a)(4)(A)(xi)",
-                                  "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 AT-04 (HIGH; MOD)",
-                                  "FedRAMP - AT-4b[H]",
-                                  "FedRAMP - AT-4b[L]",
-                                  "FedRAMP - AT-4b[M]",
-                                  "HIPAA Security Rule - § 164.308(a)(5)(i)",
-                                  "HITRUST De-ID Framework - De-ID Framework v1 Perimeter Security (Alarms): Testing",
-                                  "IRS Pub 1075 - AT-4b",
-                                  "MARS-E v2.2 - AT-4b",
-                                  "MARS-E v2.2 - AT-4c",
-                                  "NIST SP 800-53 R4 AT-4b[HML]{0}",
-                                  "NIST SP 800-53 r5 - AT-4b",
-                                  "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 AT-4c[M]-0"
+                                    "1 TAC 15 390.2 - 1 TAC § 390.2(a)(4)(A)(xi)",
+                                    "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 AT-04 (HIGH; MOD)",
+                                    "FedRAMP - AT-4b[H]",
+                                    "FedRAMP - AT-4b[L]",
+                                    "FedRAMP - AT-4b[M]",
+                                    "HIPAA Security Rule - § 164.308(a)(5)(i)",
+                                    "HITRUST De-ID Framework - De-ID Framework v1 Perimeter Security (Alarms): Testing",
+                                    "IRS Pub 1075 - AT-4b",
+                                    "MARS-E v2.2 - AT-4b",
+                                    "MARS-E v2.2 - AT-4c",
+                                    "NIST SP 800-53 R4 AT-4b[HML]{0}",
+                                    "NIST SP 800-53 r5 - AT-4b",
+                                    "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 AT-4c[M]-0"
                                 ],
                                 "implementationExample": "The organization maintains a documented list of each individual who completes the on-boarding process and ensures that training records are retained for at least five years. The organization trains workforce members on how to properly respond to perimeter security alarms."
-                              }
+                            }
                         ]
                     }
                 ]
@@ -1654,48 +1654,161 @@
         "title": "Risk Management",
         "version": "1.0",
         "objectives": [
-          {
-            "id": "1",
-            "sectionIdentifier": "03.01",
-            "title": "Risk Management Program",
-            "description": "To develop and implement a Risk Management Program that addresses Risk Assessments, Risk Mitigation, and Risk Evaluations.",
-            "controlReferences": [
-              {
+            {
                 "id": "1",
-                "sectionIdentifier": "03.a",
-                "name": "Risk Management Program Development",
-                "specification": "Organizations shall develop and maintain a risk management program to manage risk to an acceptable level.",
-                "topics": [],
-                "factorType": "ORGANIZATIONAL",
-                "levels": [
-                  {
-                    "level": 1,
-                    "organizationalFactors": [],
-                    "systemFactors": [],
-                    "regulatoryFactors": ["FISMA", "HITRUST De-ID Framework", "IRS Pub. 1075", "MARS-E v2.0", "NY OHIP Moderate-plus Security Baselines v3.1", "Texas Medical Records Privacy Act", "CMS Minimum Security Requirements (High)", "High", "Low", "Moderate"],
-                    "authoritativeSourceMapping": ["1 TAC 15 390.2 - 1 TAC § 390.2(a)(1)", "1 TAC 15 390.2 - 1 TAC § 390.2(a)(4)(A)(xi)", "1 TAC 15 390.2 - 1 TAC § 390.2(b)", "AICPA Trust Services Criteria - AICPA 2017 CC3.3", "Banking Requirements - FFIEC IS v2016 A.2.11", "Banking Requirements - FFIEC IS v2016 A.3.1", "Banking Requirements - FFIEC IS v2016 A.6.4(a)", "Banking Requirements - FFIEC IS v2016 A.7.1", "Banking Requirements - FFIEC IS v2016 A.7.2", "Banking Requirements - FFIEC IS v2016 A.7.3", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 AR-02 (HIGH; MOD)", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PM-09 (HIGH; MOD)", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PM-11 (HIGH; MOD)", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 RA-01 (HIGH; MOD)", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 RA-03 (HIGH; MOD)", "EU GDPR Article 32(2)", "HIPAA Security Rule - § 164.308(a)(1)(ii)(B)", "IRS Pub 1075 - PM-9b", "MARS-E v2.2 - PM-11a", "MARS-E v2.2 - PM-11b", "MARS-E v2.2 - PM-9a", "NIST Cybersecurity Framework v1.1 - ID.RA-5", "NIST Cybersecurity Framework v1.1 - ID.RM-1", "NIST Cybersecurity Framework v1.1 - RS.MI-3", "NIST SP 800-53 R4 PM-9a[HML]{0}", "NIST SP 800-53 R4 PM-9c[HML]{0}", "NIST SP 800-53 r5 - PM-28", "NIST SP 800-53 r5 - PM-9a1", "NIST SP 800-53 r5 - PM-9c", "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PM-9a[M]-0"],
-                    "implementationExample": "The organization's risk management program includes: objectives of the risk management process; management's clearly stated level of acceptable risk, informed by its role in the critical infrastructure and business-specific risk analysis; the plan for managing operational risk communicated to stakeholders; the connection between the risk management policy and the organization's strategic planning processes; documented risk assessment processes and procedures; regular performance of risk assessments; mitigation of risks identified from risk assessments and threat monitoring procedures; risk tolerance thresholds are defined for each category of risk; reassessment of the risk management policy to ensure management's stated level of acceptable risk is still accurate, previously decided upon security controls are still applicable and effective, and to evaluate the possible risk level changes in the environment; updating the risk management policy if any of these elements have changed; and repeating the risk management process prior to any significant change, after a serious incident, whenever a new significant risk factor is identified, or at a minimum annually."
-                  },
-                  {
-                    "level": 2,
-                    "organizationalFactors": ["Number of Licensed Beds: Between 200 and 750 Beds", "Number of Covered Lives: Between 1 million to 7.5 Million Lives", "Number of transactions received and sent annually: Between 1 and 6 Million Transactions", "Number of Admitted Patients annually: Between 7.5k and 20k Patients", "Total Terabytes of Data Held: Between 15 and 60 Terabytes(TB)", "Volume of Data Exchanged Annually: Between 25 and 100 Megabytes(MB)", "Number of prescriptions filled annually: Between 10 million to 60 million Prescriptions", "Number of Physicians on staff: Between 11 and 25 Physicians", "Number of Patient Encounters Annually: Between 60k to 180k Encounters", "Number of Individual Records that are processed annually: Between 180k and 725k Records", "Number of Records that are currently held: Between 10 and 60 Million Records"],
-                    "systemFactors": [],
-                    "regulatoryFactors": ["FedRAMP", "FISMA", "HITRUST De-ID Framework", "IRS Pub. 1075", "MARS-E v2.0", "Banking Requirements", "NY OHIP Moderate-plus Security Baselines v3.1", "Texas Medical Records Privacy Act", "CMS Minimum Security Requirements (High)", "High", "Low", "Moderate"],
-                    "authoritativeSourceMapping": ["1 TAC 15 390.2 - 1 TAC § 390.2(a)(1)", "1 TAC 15 390.2 - 1 TAC § 390.2(a)(4)(A)(xi)", "1 TAC 15 390.2 - 1 TAC § 390.2(b)", "Banking Requirements - FFIEC IS v2016 A.2.11", "Banking Requirements - FFIEC IS v2016 A.3.1", "Banking Requirements - FFIEC IS v2016 A.7.1", "Banking Requirements - FFIEC IS v2016 A.7.2", "Banking Requirements - FFIEC IS v2016 A.7.3", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PM-04 (HIGH; MOD)", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 RA-01 (HIGH; MOD)", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 RA-03 (HIGH; MOD)", "NIST Cybersecurity Framework v1.1 - ID.GV-4", "NIST Cybersecurity Framework v1.1 - RS.MI-3", "NIST SP 800-53 R4 PM-9b[HML]{0}", "NIST SP 800-53 r5 - PM-9b", "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PM-9c[M]-2"],
-                    "implementationExample": "The organization evaluates, and manages risk prior to any significant change, after a serious incident, whenever a new significant risk factor is identified, or at a minimum annually. A formal risk assessment is performed. Risk treatment processes are implemented. A repository and tracking system for risk assessments performed is implemented. Risk mitigation is completed or underway."
-                  },
-                  {
-                    "level": 3,
-                    "organizationalFactors": ["Number of Licensed Beds: Greater than 750 Beds", "Number of Covered Lives: Greater than 7.5 Million Lives", "Number of transactions received and sent annually: More than 6 Million Transactions", "Number of Admitted Patients annually: More than 20k Patients", "Total Terabytes of Data Held: More than 60 Terabytes(TB)", "Volume of Data Exchanged Annually: More than 100 Megabytes(MB)", "Number of prescriptions filled annually: Greater than 60 million Prescriptions", "Number of Physicians on staff: Greater than 25 Physicians", "Number of Patient Encounters Annually: Greater than 180k Encounters", "Number of Individual Records that are processed annually: More than 725k Records", "Number of Records that are currently held: More than 60 Million Records"],
-                    "systemFactors": [],
-                    "regulatoryFactors": ["FTC Red Flags Rule (16 CFR 681)", "Texas Medical Records Privacy Act"],
-                    "authoritativeSourceMapping": ["1 TAC 15 390.2 - 1 TAC § 390.2(a)(3)", "FTC Red Flags Rule (16 CFR 681) - 16 CFR Part § 681 Appendix A I", "FTC Red Flags Rule (16 CFR 681) - 16 CFR Part § 681 Appendix A II", "FTC Red Flags Rule (16 CFR 681) - 16 CFR Part § 681 Appendix A V", "FTC Red Flags Rule (16 CFR 681) - 16 CFR Part § 681.1 (b)(3)", "FTC Red Flags Rule (16 CFR 681) - 16 CFR Part § 681.1 (d)(1)", "FTC Red Flags Rule (16 CFR 681) - 16 CFR Part § 681.1 (d)(2)", "FTC Red Flags Rule (16 CFR 681) - 16 CFR Part § 681.1 (f)", "NIST Cybersecurity Framework v1.1 - DE.DP-5", "NIST Cybersecurity Framework v1.1 - RS.IM-2", "NIST Cybersecurity Framework v1.1 - RS.MI-3", "NIST Cybersecurity Framework v1.1 - RS.RP-1", "NIST SP 800-53 r5 - IR-8(1)c"],
-                    "implementationExample": "The organization develops, and implements a written Identity Theft Prevention Program that is designed to detect, prevent, and mitigate identity theft in connection with the opening of an account or any existing account that involves or is designed to permit multiple payments or transactions. The organization defines and incorporates existing policies and implement procedures to: identify relevant patterns, practices, or specific activities that indicate the possible existence of identity theft for the accounts, and incorporate those patterns, practices, and activities into its program; detect patterns, practices, and activities that have been incorporated into the program; respond appropriately to any patterns, practices, and activities that are detected to prevent and mitigate identity theft; and ensure the program and patterns, practices, and activities are updated at least annually, to reflect changes in risks to customers and to the safety and soundness of the organization. The organization has identified that 'Personal Identifying Information' (PII) [also Personally Identifiable Information] means information that alone, or in conjunction with other information, identifies an individual. The organization's definition of PII includes: name, social security number, date of birth, or government-issued identification number; mother's maiden name; unique biometric data, including the individuals fingerprint, voice print, and retina or iris image; electronic identification number, address, or routing code; and telecommunication access device."
-                  }
+                "sectionIdentifier": "03.01",
+                "title": "Risk Management Program",
+                "description": "To develop and implement a Risk Management Program that addresses Risk Assessments, Risk Mitigation, and Risk Evaluations.",
+                "controlReferences": [
+                    {
+                        "id": "1",
+                        "sectionIdentifier": "03.a",
+                        "name": "Risk Management Program Development",
+                        "specification": "Organizations shall develop and maintain a risk management program to manage risk to an acceptable level.",
+                        "topics": [],
+                        "factorType": "ORGANIZATIONAL",
+                        "levels": [
+                            {
+                                "level": 1,
+                                "organizationalFactors": [],
+                                "systemFactors": [],
+                                "regulatoryFactors": [
+                                    "FISMA",
+                                    "HITRUST De-ID Framework",
+                                    "IRS Pub. 1075",
+                                    "MARS-E v2.0",
+                                    "NY OHIP Moderate-plus Security Baselines v3.1",
+                                    "Texas Medical Records Privacy Act",
+                                    "CMS Minimum Security Requirements (High)",
+                                    "High",
+                                    "Low",
+                                    "Moderate"
+                                ],
+                                "authoritativeSourceMapping": [
+                                    "1 TAC 15 390.2 - 1 TAC § 390.2(a)(1)",
+                                    "1 TAC 15 390.2 - 1 TAC § 390.2(a)(4)(A)(xi)",
+                                    "1 TAC 15 390.2 - 1 TAC § 390.2(b)",
+                                    "AICPA Trust Services Criteria - AICPA 2017 CC3.3",
+                                    "Banking Requirements - FFIEC IS v2016 A.2.11",
+                                    "Banking Requirements - FFIEC IS v2016 A.3.1",
+                                    "Banking Requirements - FFIEC IS v2016 A.6.4(a)",
+                                    "Banking Requirements - FFIEC IS v2016 A.7.1",
+                                    "Banking Requirements - FFIEC IS v2016 A.7.2",
+                                    "Banking Requirements - FFIEC IS v2016 A.7.3",
+                                    "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 AR-02 (HIGH; MOD)",
+                                    "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PM-09 (HIGH; MOD)",
+                                    "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PM-11 (HIGH; MOD)",
+                                    "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 RA-01 (HIGH; MOD)",
+                                    "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 RA-03 (HIGH; MOD)",
+                                    "EU GDPR Article 32(2)",
+                                    "HIPAA Security Rule - § 164.308(a)(1)(ii)(B)",
+                                    "IRS Pub 1075 - PM-9b",
+                                    "MARS-E v2.2 - PM-11a",
+                                    "MARS-E v2.2 - PM-11b",
+                                    "MARS-E v2.2 - PM-9a",
+                                    "NIST Cybersecurity Framework v1.1 - ID.RA-5",
+                                    "NIST Cybersecurity Framework v1.1 - ID.RM-1",
+                                    "NIST Cybersecurity Framework v1.1 - RS.MI-3",
+                                    "NIST SP 800-53 R4 PM-9a[HML]{0}",
+                                    "NIST SP 800-53 R4 PM-9c[HML]{0}",
+                                    "NIST SP 800-53 r5 - PM-28",
+                                    "NIST SP 800-53 r5 - PM-9a1",
+                                    "NIST SP 800-53 r5 - PM-9c",
+                                    "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PM-9a[M]-0"
+                                ],
+                                "implementationExample": "The organization's risk management program includes: objectives of the risk management process; management's clearly stated level of acceptable risk, informed by its role in the critical infrastructure and business-specific risk analysis; the plan for managing operational risk communicated to stakeholders; the connection between the risk management policy and the organization's strategic planning processes; documented risk assessment processes and procedures; regular performance of risk assessments; mitigation of risks identified from risk assessments and threat monitoring procedures; risk tolerance thresholds are defined for each category of risk; reassessment of the risk management policy to ensure management's stated level of acceptable risk is still accurate, previously decided upon security controls are still applicable and effective, and to evaluate the possible risk level changes in the environment; updating the risk management policy if any of these elements have changed; and repeating the risk management process prior to any significant change, after a serious incident, whenever a new significant risk factor is identified, or at a minimum annually."
+                            },
+                            {
+                                "level": 2,
+                                "organizationalFactors": [
+                                    "Number of Licensed Beds: Between 200 and 750 Beds",
+                                    "Number of Covered Lives: Between 1 million to 7.5 Million Lives",
+                                    "Number of transactions received and sent annually: Between 1 and 6 Million Transactions",
+                                    "Number of Admitted Patients annually: Between 7.5k and 20k Patients",
+                                    "Total Terabytes of Data Held: Between 15 and 60 Terabytes(TB)",
+                                    "Volume of Data Exchanged Annually: Between 25 and 100 Megabytes(MB)",
+                                    "Number of prescriptions filled annually: Between 10 million to 60 million Prescriptions",
+                                    "Number of Physicians on staff: Between 11 and 25 Physicians",
+                                    "Number of Patient Encounters Annually: Between 60k to 180k Encounters",
+                                    "Number of Individual Records that are processed annually: Between 180k and 725k Records",
+                                    "Number of Records that are currently held: Between 10 and 60 Million Records"
+                                ],
+                                "systemFactors": [],
+                                "regulatoryFactors": [
+                                    "FedRAMP",
+                                    "FISMA",
+                                    "HITRUST De-ID Framework",
+                                    "IRS Pub. 1075",
+                                    "MARS-E v2.0",
+                                    "Banking Requirements",
+                                    "NY OHIP Moderate-plus Security Baselines v3.1",
+                                    "Texas Medical Records Privacy Act",
+                                    "CMS Minimum Security Requirements (High)",
+                                    "High",
+                                    "Low",
+                                    "Moderate"
+                                ],
+                                "authoritativeSourceMapping": [
+                                    "1 TAC 15 390.2 - 1 TAC § 390.2(a)(1)",
+                                    "1 TAC 15 390.2 - 1 TAC § 390.2(a)(4)(A)(xi)",
+                                    "1 TAC 15 390.2 - 1 TAC § 390.2(b)",
+                                    "Banking Requirements - FFIEC IS v2016 A.2.11",
+                                    "Banking Requirements - FFIEC IS v2016 A.3.1",
+                                    "Banking Requirements - FFIEC IS v2016 A.7.1",
+                                    "Banking Requirements - FFIEC IS v2016 A.7.2",
+                                    "Banking Requirements - FFIEC IS v2016 A.7.3",
+                                    "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PM-04 (HIGH; MOD)",
+                                    "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 RA-01 (HIGH; MOD)",
+                                    "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 RA-03 (HIGH; MOD)",
+                                    "NIST Cybersecurity Framework v1.1 - ID.GV-4",
+                                    "NIST Cybersecurity Framework v1.1 - RS.MI-3",
+                                    "NIST SP 800-53 R4 PM-9b[HML]{0}",
+                                    "NIST SP 800-53 r5 - PM-9b",
+                                    "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PM-9c[M]-2"
+                                ],
+                                "implementationExample": "The organization evaluates, and manages risk prior to any significant change, after a serious incident, whenever a new significant risk factor is identified, or at a minimum annually. A formal risk assessment is performed. Risk treatment processes are implemented. A repository and tracking system for risk assessments performed is implemented. Risk mitigation is completed or underway."
+                            },
+                            {
+                                "level": 3,
+                                "organizationalFactors": [
+                                    "Number of Licensed Beds: Greater than 750 Beds",
+                                    "Number of Covered Lives: Greater than 7.5 Million Lives",
+                                    "Number of transactions received and sent annually: More than 6 Million Transactions",
+                                    "Number of Admitted Patients annually: More than 20k Patients",
+                                    "Total Terabytes of Data Held: More than 60 Terabytes(TB)",
+                                    "Volume of Data Exchanged Annually: More than 100 Megabytes(MB)",
+                                    "Number of prescriptions filled annually: Greater than 60 million Prescriptions",
+                                    "Number of Physicians on staff: Greater than 25 Physicians",
+                                    "Number of Patient Encounters Annually: Greater than 180k Encounters",
+                                    "Number of Individual Records that are processed annually: More than 725k Records",
+                                    "Number of Records that are currently held: More than 60 Million Records"
+                                ],
+                                "systemFactors": [],
+                                "regulatoryFactors": [
+                                    "FTC Red Flags Rule (16 CFR 681)",
+                                    "Texas Medical Records Privacy Act"
+                                ],
+                                "authoritativeSourceMapping": [
+                                    "1 TAC 15 390.2 - 1 TAC § 390.2(a)(3)",
+                                    "FTC Red Flags Rule (16 CFR 681) - 16 CFR Part § 681 Appendix A I",
+                                    "FTC Red Flags Rule (16 CFR 681) - 16 CFR Part § 681 Appendix A II",
+                                    "FTC Red Flags Rule (16 CFR 681) - 16 CFR Part § 681 Appendix A V",
+                                    "FTC Red Flags Rule (16 CFR 681) - 16 CFR Part § 681.1 (b)(3)",
+                                    "FTC Red Flags Rule (16 CFR 681) - 16 CFR Part § 681.1 (d)(1)",
+                                    "FTC Red Flags Rule (16 CFR 681) - 16 CFR Part § 681.1 (d)(2)",
+                                    "FTC Red Flags Rule (16 CFR 681) - 16 CFR Part § 681.1 (f)",
+                                    "NIST Cybersecurity Framework v1.1 - DE.DP-5",
+                                    "NIST Cybersecurity Framework v1.1 - RS.IM-2",
+                                    "NIST Cybersecurity Framework v1.1 - RS.MI-3",
+                                    "NIST Cybersecurity Framework v1.1 - RS.RP-1",
+                                    "NIST SP 800-53 r5 - IR-8(1)c"
+                                ],
+                                "implementationExample": "The organization develops, and implements a written Identity Theft Prevention Program that is designed to detect, prevent, and mitigate identity theft in connection with the opening of an account or any existing account that involves or is designed to permit multiple payments or transactions. The organization defines and incorporates existing policies and implement procedures to: identify relevant patterns, practices, or specific activities that indicate the possible existence of identity theft for the accounts, and incorporate those patterns, practices, and activities into its program; detect patterns, practices, and activities that have been incorporated into the program; respond appropriately to any patterns, practices, and activities that are detected to prevent and mitigate identity theft; and ensure the program and patterns, practices, and activities are updated at least annually, to reflect changes in risks to customers and to the safety and soundness of the organization. The organization has identified that 'Personal Identifying Information' (PII) [also Personally Identifiable Information] means information that alone, or in conjunction with other information, identifies an individual. The organization's definition of PII includes: name, social security number, date of birth, or government-issued identification number; mother's maiden name; unique biometric data, including the individuals fingerprint, voice print, and retina or iris image; electronic identification number, address, or routing code; and telecommunication access device."
+                            }
+                        ]
+                    }
                 ]
-              }
-            ]
-          }
+            }
         ]
-      }
+    }
 ]
