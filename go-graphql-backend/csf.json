@@ -20,6 +20,7 @@
                         "factorType": "ORGANIZATIONAL",
                         "levels": [
                             {
+                                "id": "00.a.1",
                                 "level": 1,
                                 "organizationalFactors": [],
                                 "systemFactors": [],
@@ -46,6 +47,7 @@
                                 "implementationExample": "The organization has a formal information security management program (ISMP) that is documented and addresses the overall security program of the organization. Management support for the ISMP is demonstrated through signed acceptance or approval by management. The ISMP is based on an accepted industry framework, considers all the control objectives of the accepted industry framework, documents any excluded control objectives of the accepted industry framework and the reasons for their exclusion, and is updated at least annually or when there are significant changes in the environment."
                             },
                             {
+                                "id": "00.a.2",
                                 "level": 2,
                                 "organizationalFactors": [
                                     "Number of Licensed Beds: Between 200 and 750 Beds",
@@ -110,6 +112,7 @@
                                 "implementationExample": "The information security management program (ISMP) has been established, implemented, operational, monitored, reviewed, and maintained. The ISMP is formally documented, protected, controlled, and retained according to federal, state and organizational requirements. The ISMP also incorporates a Plan, Do, Check, ACT (PDCA) cycle for continuous improvement in the ISMP, particularly as information is obtained that could improve the ISMP, or indicates any shortcomings of the ISMP."
                             },
                             {
+                                "id": "00.a.3",
                                 "level": 3,
                                 "organizationalFactors": [
                                     "Number of Licensed Beds: Greater than 750 Beds",
@@ -192,6 +195,7 @@
                         "factorType": "ORGANIZATIONAL",
                         "levels": [
                             {
+                                "id": "01.a.1",
                                 "level": 1,
                                 "organizationalFactors": [],
                                 "systemFactors": [],
@@ -265,6 +269,7 @@
                                 "implementationExample": "Access control rules and rights for each user or group of users are based on clearly defined requirements for information dissemination and authorization (e.g., need-to-know, need-to-share, least privilege, security levels, and information classification). The policy further defines logical and physical access control rules and rights for each user or group of users are considered together and clearly defined in standard user access profiles (e.g., roles). The access control program takes into account security requirements of individual business applications and business units and ensures standard user access profiles for common jobs roles in the organization."
                             },
                             {
+                                "id": "01.a.2",
                                 "level": 2,
                                 "organizationalFactors": [],
                                 "systemFactors": [],
@@ -315,6 +320,7 @@
                                 "implementationExample": "The organization ensures users and service providers are given a clear statement of the business requirements to be met by access controls. The access control policy defines business requirements and how access controls are used to protect data. The access control policy defines requirements for formal authorization of access requests, modification of permissions/rights/access, emergency access, periodic review of access rights, and the removal of access. Further, the organization develops and disseminates/communicates a formal access control program (e.g., through policies and procedures) and reviews and updates the program annually."
                             },
                             {
+                                "id": "01.a.3",
                                 "level": 3,
                                 "organizationalFactors": [
                                     "Number of Licensed Beds: Between 200 and 750 Beds",
@@ -367,6 +373,7 @@
                         "factorType": "SYSTEM",
                         "levels": [
                             {
+                                "id": "01.b.1",
                                 "level": 1,
                                 "organizationalFactors": [],
                                 "systemFactors": [],
@@ -394,6 +401,7 @@
                                 "implementationExample": "Default and unnecessary accounts are removed, disabled, or otherwise secured."
                             },
                             {
+                                "id": "01.b.2",
                                 "level": 2,
                                 "organizationalFactors": [],
                                 "systemFactors": [
@@ -574,6 +582,7 @@
                                 "implementationExample": "Proper identification is required for requests to establish information system accounts and approval of requests to establish such accounts. Account managers are notified when users are: terminated, transferred, their information system usage or need-to-know/need-to-share changes, or when accounts (including shared/group, emergency, and temporary accounts) are no longer required. Account managers modify the user's account accordingly."
                             },
                             {
+                                "id": "01.b.3",
                                 "level": 3,
                                 "organizationalFactors": [],
                                 "systemFactors": [],
@@ -619,6 +628,7 @@
                         "factorType": "SYSTEM",
                         "levels": [
                             {
+                                "id": "01.c.1",
                                 "level": 1,
                                 "organizationalFactors": [],
                                 "systemFactors": [
@@ -718,6 +728,7 @@
                                 "implementationExample": "The allocation of privileges for all systems and system components is controlled through a formal authorization process. The organization ensures access privileges associated with each system product (e.g., operating system, database management system and each application) and the users associated with each system product which need to be allocated are identified. Privileges are allocated to users on a need-to-use basis and on an event-by-event basis in line with the access control policy (e.g., the minimum requirement for their functional role–user or administrator, only when needed). The organization limits authorization to privileged accounts on information systems to a pre-defined subset of users and tracks and monitors privileged role assignments."
                             },
                             {
+                                "id": "01.c.2",
                                 "level": 2,
                                 "organizationalFactors": [],
                                 "systemFactors": [
@@ -780,6 +791,7 @@
                                 "implementationExample": "Role-based access controls are implemented and capable of mapping each user to one or more roles, and each role to one or more system functions. The development and use of system routines and programs which avoid the need to run elevated privileges is promoted."
                             },
                             {
+                                "id": "01.c.3",
                                 "level": 3,
                                 "organizationalFactors": [],
                                 "systemFactors": [
@@ -905,6 +917,7 @@
                         "factorType": "ORGANIZATIONAL",
                         "levels": [
                             {
+                                "id": "02.a.1",
                                 "level": 1,
                                 "organizationalFactors": [],
                                 "systemFactors": [],
@@ -934,6 +947,7 @@
                                 "implementationExample": "Policies and/or standards related to user roles and responsibilities include: implementing and acting in accordance with the organization's information security policies; protecting assets from unauthorized access, disclosure, modification, destruction, or interference; executing particular security processes or activities; ensuring responsibility is assigned to the individual for actions taken; reporting security events or potential events or other security risks to the organization; and security roles and responsibilities are defined and clearly communicated to users and job-candidates during the pre-employment process."
                             },
                             {
+                                "id": "02.a.2",
                                 "level": 2,
                                 "organizationalFactors": [
                                     "Number of Licensed Beds: Between 200 and 750 Beds",
@@ -1019,6 +1033,7 @@
                         "factorType": "ORGANIZATIONAL",
                         "levels": [
                             {
+                                "id": "02.b.1",
                                 "level": 1,
                                 "organizationalFactors": [],
                                 "systemFactors": [],
@@ -1062,6 +1077,7 @@
                                 "implementationExample": "The organization screens individuals requiring access to organizational information before authorizing access."
                             },
                             {
+                                "id": "02.b.2",
                                 "level": 2,
                                 "organizationalFactors": [
                                     "Number of Licensed Beds: Between 200 and 750 Beds",
@@ -1122,6 +1138,7 @@
                                 "implementationExample": "Where a job, either on initial appointment or on promotion, involves the person having access to information assets and, in particular, those handling covered information (e.g., financial information, personal information, or highly confidential information), the organization verifies the identity of such staff, current address of such staff, and previous employment of such staff. The organization defines criteria and limitations for verification checks (e.g., who is eligible to screen people, and how, when, and why verification checks are carried out)."
                             },
                             {
+                                "id": "02.b.3",
                                 "level": 3,
                                 "organizationalFactors": [
                                     "Number of Licensed Beds: Greater than 750 Beds",
@@ -1184,6 +1201,7 @@
                         "factorType": "ORGANIZATIONAL",
                         "levels": [
                             {
+                                "id": "02.c.1",
                                 "level": 1,
                                 "organizationalFactors": [],
                                 "systemFactors": [],
@@ -1220,6 +1238,7 @@
                                 "implementationExample": "The organization ensures that employees, contractors, and third-party users agree to terms and conditions concerning information security appropriate to the nature and extent of access they will have to the organization's assets associated with information systems and services. The organization develops and documents access agreements for organizational systems. Privileges are not granted until the terms and conditions have been satisfied and agreements have been signed."
                             },
                             {
+                                "id": "02.c.2",
                                 "level": 2,
                                 "organizationalFactors": [
                                     "Number of Licensed Beds: Between 200 and 750 Beds",
@@ -1299,6 +1318,7 @@
                         "factorType": "ORGANIZATIONAL",
                         "levels": [
                             {
+                                "id": "02.d.1",
                                 "level": 1,
                                 "organizationalFactors": [],
                                 "systemFactors": [],
@@ -1334,6 +1354,7 @@
                                 "implementationExample": "Employees, contractors, and third-party users are: properly briefed on their information security roles and responsibilities prior to being granted access to covered and/or confidential information or information systems; provided with guidelines to state security expectations of their role within the organization; motivated and comply with the security policies of the organization; achieve a level of awareness on security relevant to their roles and responsibilities within the organization; conform to the terms and conditions of employment, which includes the organization's information security policy and appropriate methods of working; and continue to have the skills and qualifications appropriate to their roles and responsibilities."
                             },
                             {
+                                "id": "02.d.2",
                                 "level": 2,
                                 "organizationalFactors": [
                                     "Number of Licensed Beds: Between 200 and 750 Beds",
@@ -1435,6 +1456,7 @@
                         "factorType": "ORGANIZATIONAL",
                         "levels": [
                             {
+                                "id": "02.e.1",
                                 "level": 1,
                                 "organizationalFactors": [
                                     "Number of Licensed Beds: Greater than 750 Beds",
@@ -1507,6 +1529,7 @@
                                 "implementationExample": "The organization provides role-based security-related training, especially for personnel with significant security responsibilities (e.g., system administrators), prior to accessing the organization's information resources, when required by system or environment changes, when entering into a new position that requires additional role-specific training, and no less than annually thereafter. The organization provides basic security awareness training to information system users (including managers, senior executives, and contractors) as part of initial training for new users, prior to accessing any system’s information."
                             },
                             {
+                                "id": "02.e.2",
                                 "level": 2,
                                 "organizationalFactors": [
                                     "Number of Licensed Beds: Between 200 and 750 Beds",
@@ -1597,9 +1620,10 @@
                                     "NIST Cybersecurity Framework v1.1 - PR.AT-1",
                                     "NIST Cybersecurity Framework v1.1 - PR.AT-4"
                                 ],
-                                "implementationExample": "Security awareness training commences with a formal induction process designed to introduce the organization's security and privacy policies, state and federal laws, and expectations before access to information or services is granted and no later than 60 days after the date the employee is hired. Ongoing training includes security requirements, privacy requirements, training in the correct use of information assets and facilities, and discusses how the organization addresses each area of the HITRUST CSF (e.g., audit logging and monitoring), how events or incidents are identified (e.g., monitoring for inappropriate or failed user logins), and the actions the organization takes in response to events or incidents (e.g., notifying the workforce member or the members supervisor), as appropriate to the area of training. he organization provides incident response and contingency training to information systems users consistent with assigned roles and responsibilities within 90 days of assuming an incident response role or responsibility, when required by information system changes, and within every 365 days thereafter.",
+                                "implementationExample": "Security awareness training commences with a formal induction process designed to introduce the organization's security and privacy policies, state and federal laws, and expectations before access to information or services is granted and no later than 60 days after the date the employee is hired. Ongoing training includes security requirements, privacy requirements, training in the correct use of information assets and facilities, and discusses how the organization addresses each area of the HITRUST CSF (e.g., audit logging and monitoring), how events or incidents are identified (e.g., monitoring for inappropriate or failed user logins), and the actions the organization takes in response to events or incidents (e.g., notifying the workforce member or the members supervisor), as appropriate to the area of training. he organization provides incident response and contingency training to information systems users consistent with assigned roles and responsibilities within 90 days of assuming an incident response role or responsibility, when required by information system changes, and within every 365 days thereafter."
                             },
                             {
+                                "id": "02.e.3",
                                 "level": 3,
                                 "organizationalFactors": [
                                     "Number of Licensed Beds: Greater than 750 Beds",
@@ -1669,6 +1693,7 @@
                         "factorType": "ORGANIZATIONAL",
                         "levels": [
                             {
+                                "id": "03.a.1",
                                 "level": 1,
                                 "organizationalFactors": [],
                                 "systemFactors": [],
@@ -1719,6 +1744,7 @@
                                 "implementationExample": "The organization's risk management program includes: objectives of the risk management process; management's clearly stated level of acceptable risk, informed by its role in the critical infrastructure and business-specific risk analysis; the plan for managing operational risk communicated to stakeholders; the connection between the risk management policy and the organization's strategic planning processes; documented risk assessment processes and procedures; regular performance of risk assessments; mitigation of risks identified from risk assessments and threat monitoring procedures; risk tolerance thresholds are defined for each category of risk; reassessment of the risk management policy to ensure management's stated level of acceptable risk is still accurate, previously decided upon security controls are still applicable and effective, and to evaluate the possible risk level changes in the environment; updating the risk management policy if any of these elements have changed; and repeating the risk management process prior to any significant change, after a serious incident, whenever a new significant risk factor is identified, or at a minimum annually."
                             },
                             {
+                                "id": "03.a.2",
                                 "level": 2,
                                 "organizationalFactors": [
                                     "Number of Licensed Beds: Between 200 and 750 Beds",
@@ -1769,6 +1795,7 @@
                                 "implementationExample": "The organization evaluates, and manages risk prior to any significant change, after a serious incident, whenever a new significant risk factor is identified, or at a minimum annually. A formal risk assessment is performed. Risk treatment processes are implemented. A repository and tracking system for risk assessments performed is implemented. Risk mitigation is completed or underway."
                             },
                             {
+                                "id": "03.a.3",
                                 "level": 3,
                                 "organizationalFactors": [
                                     "Number of Licensed Beds: Greater than 750 Beds",
@@ -1816,6 +1843,7 @@
                         "factorType": "ORGANIZATIONAL",
                         "levels": [
                             {
+                                "id": "03.b.1",
                                 "level": 1,
                                 "organizationalFactors": [],
                                 "systemFactors": [],
@@ -1860,6 +1888,7 @@
                                 "implementationExample": "The organization performs risk assessments that address all the major objectives of the HITRUST CSF. Risk assessments are consistent and identify information security risks to the organization. Risk assessments are to be performed at planned intervals and when major changes occur in the environment, and the results reviewed annually."
                             },
                             {
+                                "id": "03.b.2",
                                 "level": 2,
                                 "organizationalFactors": [
                                     "Number of Licensed Beds: Between 200 and 750 Beds",
