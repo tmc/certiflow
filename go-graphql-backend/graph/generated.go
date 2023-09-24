@@ -61,9 +61,10 @@ type ComplexityRoot struct {
 	}
 
 	ControlMapping struct {
-		Assessment         func(childComplexity int) int
-		ControlReferenceID func(childComplexity int) int
-		EvidenceCreator    func(childComplexity int) int
+		Assessment       func(childComplexity int) int
+		ControlReference func(childComplexity int) int
+		Details          func(childComplexity int) int
+		EvidenceCreator  func(childComplexity int) int
 	}
 
 	ControlReference struct {
@@ -85,9 +86,11 @@ type ComplexityRoot struct {
 
 	Level struct {
 		AuthoritativeSourceMapping func(childComplexity int) int
-		Factors                    func(childComplexity int) int
 		ImplementationExample      func(childComplexity int) int
 		Level                      func(childComplexity int) int
+		OrganizationalFactors      func(childComplexity int) int
+		RegulatoryFactors          func(childComplexity int) int
+		SystemFactors              func(childComplexity int) int
 	}
 
 	Mutation struct {
@@ -221,12 +224,19 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.ControlMapping.Assessment(childComplexity), true
 
-	case "ControlMapping.controlReferenceId":
-		if e.complexity.ControlMapping.ControlReferenceID == nil {
+	case "ControlMapping.controlReference":
+		if e.complexity.ControlMapping.ControlReference == nil {
 			break
 		}
 
-		return e.complexity.ControlMapping.ControlReferenceID(childComplexity), true
+		return e.complexity.ControlMapping.ControlReference(childComplexity), true
+
+	case "ControlMapping.details":
+		if e.complexity.ControlMapping.Details == nil {
+			break
+		}
+
+		return e.complexity.ControlMapping.Details(childComplexity), true
 
 	case "ControlMapping.evidenceCreator":
 		if e.complexity.ControlMapping.EvidenceCreator == nil {
@@ -319,13 +329,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Level.AuthoritativeSourceMapping(childComplexity), true
 
-	case "Level.factors":
-		if e.complexity.Level.Factors == nil {
-			break
-		}
-
-		return e.complexity.Level.Factors(childComplexity), true
-
 	case "Level.implementationExample":
 		if e.complexity.Level.ImplementationExample == nil {
 			break
@@ -339,6 +342,27 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Level.Level(childComplexity), true
+
+	case "Level.organizationalFactors":
+		if e.complexity.Level.OrganizationalFactors == nil {
+			break
+		}
+
+		return e.complexity.Level.OrganizationalFactors(childComplexity), true
+
+	case "Level.regulatoryFactors":
+		if e.complexity.Level.RegulatoryFactors == nil {
+			break
+		}
+
+		return e.complexity.Level.RegulatoryFactors(childComplexity), true
+
+	case "Level.systemFactors":
+		if e.complexity.Level.SystemFactors == nil {
+			break
+		}
+
+		return e.complexity.Level.SystemFactors(childComplexity), true
 
 	case "Mutation.addGoogleDocLinkToOrg":
 		if e.complexity.Mutation.AddGoogleDocLinkToOrg == nil {
@@ -700,7 +724,9 @@ enum FactorType {
 # Describes a specific level, which might have multiple factor types and authoritative sources
 type Level {
   level: Int! # Assuming values like 1, 2, 3
-  factors: [FactorType!]!
+  organizationalFactors: [String!]!
+  systemFactors: [String!]!
+  regulatoryFactors: [String!]!
   authoritativeSourceMapping: [String!]!
   implementationExample: String!
 }
@@ -715,9 +741,10 @@ type Evidence {
 
 # Maps a specific piece of evidence to a control reference and its assessment level
 type ControlMapping {
-  controlReferenceId: ID!
-  assessment: AssessmentLevel
-  evidenceCreator: String # Who uploaded or linked the evidence
+  controlReference: ControlReference
+  assessment: AssessmentLevel!
+  details: String!
+  evidenceCreator: String! # Who uploaded or linked the evidence
 }
 
 # Enumerates the possible assessment levels for a control
@@ -1272,8 +1299,8 @@ func (ec *executionContext) fieldContext_ControlCategory_objectives(ctx context.
 	return fc, nil
 }
 
-func (ec *executionContext) _ControlMapping_controlReferenceId(ctx context.Context, field graphql.CollectedField, obj *model.ControlMapping) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_ControlMapping_controlReferenceId(ctx, field)
+func (ec *executionContext) _ControlMapping_controlReference(ctx context.Context, field graphql.CollectedField, obj *model.ControlMapping) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ControlMapping_controlReference(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -1286,31 +1313,44 @@ func (ec *executionContext) _ControlMapping_controlReferenceId(ctx context.Conte
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.ControlReferenceID, nil
+		return obj.ControlReference, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
 	}
 	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
 		return graphql.Null
 	}
-	res := resTmp.(string)
+	res := resTmp.(*model.ControlReference)
 	fc.Result = res
-	return ec.marshalNID2string(ctx, field.Selections, res)
+	return ec.marshalOControlReference2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐControlReference(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_ControlMapping_controlReferenceId(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_ControlMapping_controlReference(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "ControlMapping",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type ID does not have child fields")
+			switch field.Name {
+			case "id":
+				return ec.fieldContext_ControlReference_id(ctx, field)
+			case "sectionIdentifier":
+				return ec.fieldContext_ControlReference_sectionIdentifier(ctx, field)
+			case "name":
+				return ec.fieldContext_ControlReference_name(ctx, field)
+			case "specification":
+				return ec.fieldContext_ControlReference_specification(ctx, field)
+			case "topics":
+				return ec.fieldContext_ControlReference_topics(ctx, field)
+			case "factorType":
+				return ec.fieldContext_ControlReference_factorType(ctx, field)
+			case "levels":
+				return ec.fieldContext_ControlReference_levels(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type ControlReference", field.Name)
 		},
 	}
 	return fc, nil
@@ -1337,11 +1377,14 @@ func (ec *executionContext) _ControlMapping_assessment(ctx context.Context, fiel
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
-	res := resTmp.(*model.AssessmentLevel)
+	res := resTmp.(model.AssessmentLevel)
 	fc.Result = res
-	return ec.marshalOAssessmentLevel2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐAssessmentLevel(ctx, field.Selections, res)
+	return ec.marshalNAssessmentLevel2goᚑgraphqlᚑbackendᚋgraphᚋmodelᚐAssessmentLevel(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ControlMapping_assessment(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1352,6 +1395,50 @@ func (ec *executionContext) fieldContext_ControlMapping_assessment(ctx context.C
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			return nil, errors.New("field of type AssessmentLevel does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _ControlMapping_details(ctx context.Context, field graphql.CollectedField, obj *model.ControlMapping) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_ControlMapping_details(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Details, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	fc.Result = res
+	return ec.marshalNString2string(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_ControlMapping_details(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "ControlMapping",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -1378,11 +1465,14 @@ func (ec *executionContext) _ControlMapping_evidenceCreator(ctx context.Context,
 		return graphql.Null
 	}
 	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
-	res := resTmp.(*string)
+	res := resTmp.(string)
 	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
+	return ec.marshalNString2string(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_ControlMapping_evidenceCreator(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1703,8 +1793,12 @@ func (ec *executionContext) fieldContext_ControlReference_levels(ctx context.Con
 			switch field.Name {
 			case "level":
 				return ec.fieldContext_Level_level(ctx, field)
-			case "factors":
-				return ec.fieldContext_Level_factors(ctx, field)
+			case "organizationalFactors":
+				return ec.fieldContext_Level_organizationalFactors(ctx, field)
+			case "systemFactors":
+				return ec.fieldContext_Level_systemFactors(ctx, field)
+			case "regulatoryFactors":
+				return ec.fieldContext_Level_regulatoryFactors(ctx, field)
 			case "authoritativeSourceMapping":
 				return ec.fieldContext_Level_authoritativeSourceMapping(ctx, field)
 			case "implementationExample":
@@ -1881,10 +1975,12 @@ func (ec *executionContext) fieldContext_Evidence_controlMappings(ctx context.Co
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "controlReferenceId":
-				return ec.fieldContext_ControlMapping_controlReferenceId(ctx, field)
+			case "controlReference":
+				return ec.fieldContext_ControlMapping_controlReference(ctx, field)
 			case "assessment":
 				return ec.fieldContext_ControlMapping_assessment(ctx, field)
+			case "details":
+				return ec.fieldContext_ControlMapping_details(ctx, field)
 			case "evidenceCreator":
 				return ec.fieldContext_ControlMapping_evidenceCreator(ctx, field)
 			}
@@ -1938,8 +2034,8 @@ func (ec *executionContext) fieldContext_Level_level(ctx context.Context, field 
 	return fc, nil
 }
 
-func (ec *executionContext) _Level_factors(ctx context.Context, field graphql.CollectedField, obj *model.Level) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Level_factors(ctx, field)
+func (ec *executionContext) _Level_organizationalFactors(ctx context.Context, field graphql.CollectedField, obj *model.Level) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Level_organizationalFactors(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -1952,7 +2048,7 @@ func (ec *executionContext) _Level_factors(ctx context.Context, field graphql.Co
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Factors, nil
+		return obj.OrganizationalFactors, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -1964,19 +2060,107 @@ func (ec *executionContext) _Level_factors(ctx context.Context, field graphql.Co
 		}
 		return graphql.Null
 	}
-	res := resTmp.([]model.FactorType)
+	res := resTmp.([]string)
 	fc.Result = res
-	return ec.marshalNFactorType2ᚕgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorTypeᚄ(ctx, field.Selections, res)
+	return ec.marshalNString2ᚕstringᚄ(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Level_factors(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Level_organizationalFactors(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Level",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type FactorType does not have child fields")
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Level_systemFactors(ctx context.Context, field graphql.CollectedField, obj *model.Level) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Level_systemFactors(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.SystemFactors, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.([]string)
+	fc.Result = res
+	return ec.marshalNString2ᚕstringᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Level_systemFactors(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Level",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Level_regulatoryFactors(ctx context.Context, field graphql.CollectedField, obj *model.Level) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Level_regulatoryFactors(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.RegulatoryFactors, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.([]string)
+	fc.Result = res
+	return ec.marshalNString2ᚕstringᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Level_regulatoryFactors(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Level",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
@@ -5335,21 +5519,31 @@ func (ec *executionContext) _ControlMapping(ctx context.Context, sel ast.Selecti
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("ControlMapping")
-		case "controlReferenceId":
+		case "controlReference":
 
-			out.Values[i] = ec._ControlMapping_controlReferenceId(ctx, field, obj)
+			out.Values[i] = ec._ControlMapping_controlReference(ctx, field, obj)
 
-			if out.Values[i] == graphql.Null {
-				invalids++
-			}
 		case "assessment":
 
 			out.Values[i] = ec._ControlMapping_assessment(ctx, field, obj)
 
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
+		case "details":
+
+			out.Values[i] = ec._ControlMapping_details(ctx, field, obj)
+
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		case "evidenceCreator":
 
 			out.Values[i] = ec._ControlMapping_evidenceCreator(ctx, field, obj)
 
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
@@ -5491,9 +5685,23 @@ func (ec *executionContext) _Level(ctx context.Context, sel ast.SelectionSet, ob
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "factors":
+		case "organizationalFactors":
 
-			out.Values[i] = ec._Level_factors(ctx, field, obj)
+			out.Values[i] = ec._Level_organizationalFactors(ctx, field, obj)
+
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
+		case "systemFactors":
+
+			out.Values[i] = ec._Level_systemFactors(ctx, field, obj)
+
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
+		case "regulatoryFactors":
+
+			out.Values[i] = ec._Level_regulatoryFactors(ctx, field, obj)
 
 			if out.Values[i] == graphql.Null {
 				invalids++
@@ -6215,6 +6423,16 @@ func (ec *executionContext) ___Type(ctx context.Context, sel ast.SelectionSet, o
 
 // region    ***************************** type.gotpl *****************************
 
+func (ec *executionContext) unmarshalNAssessmentLevel2goᚑgraphqlᚑbackendᚋgraphᚋmodelᚐAssessmentLevel(ctx context.Context, v interface{}) (model.AssessmentLevel, error) {
+	var res model.AssessmentLevel
+	err := res.UnmarshalGQL(v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalNAssessmentLevel2goᚑgraphqlᚑbackendᚋgraphᚋmodelᚐAssessmentLevel(ctx context.Context, sel ast.SelectionSet, v model.AssessmentLevel) graphql.Marshaler {
+	return v
+}
+
 func (ec *executionContext) unmarshalNBoolean2bool(ctx context.Context, v interface{}) (bool, error) {
 	res, err := graphql.UnmarshalBoolean(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -6346,67 +6564,6 @@ func (ec *executionContext) unmarshalNFactorType2goᚑgraphqlᚑbackendᚋgraph�
 
 func (ec *executionContext) marshalNFactorType2goᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorType(ctx context.Context, sel ast.SelectionSet, v model.FactorType) graphql.Marshaler {
 	return v
-}
-
-func (ec *executionContext) unmarshalNFactorType2ᚕgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorTypeᚄ(ctx context.Context, v interface{}) ([]model.FactorType, error) {
-	var vSlice []interface{}
-	if v != nil {
-		vSlice = graphql.CoerceList(v)
-	}
-	var err error
-	res := make([]model.FactorType, len(vSlice))
-	for i := range vSlice {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
-		res[i], err = ec.unmarshalNFactorType2goᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorType(ctx, vSlice[i])
-		if err != nil {
-			return nil, err
-		}
-	}
-	return res, nil
-}
-
-func (ec *executionContext) marshalNFactorType2ᚕgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorTypeᚄ(ctx context.Context, sel ast.SelectionSet, v []model.FactorType) graphql.Marshaler {
-	ret := make(graphql.Array, len(v))
-	var wg sync.WaitGroup
-	isLen1 := len(v) == 1
-	if !isLen1 {
-		wg.Add(len(v))
-	}
-	for i := range v {
-		i := i
-		fc := &graphql.FieldContext{
-			Index:  &i,
-			Result: &v[i],
-		}
-		ctx := graphql.WithFieldContext(ctx, fc)
-		f := func(i int) {
-			defer func() {
-				if r := recover(); r != nil {
-					ec.Error(ctx, ec.Recover(ctx, r))
-					ret = nil
-				}
-			}()
-			if !isLen1 {
-				defer wg.Done()
-			}
-			ret[i] = ec.marshalNFactorType2goᚑgraphqlᚑbackendᚋgraphᚋmodelᚐFactorType(ctx, sel, v[i])
-		}
-		if isLen1 {
-			f(i)
-		} else {
-			go f(i)
-		}
-
-	}
-	wg.Wait()
-
-	for _, e := range ret {
-		if e == graphql.Null {
-			return graphql.Null
-		}
-	}
-
-	return ret
 }
 
 func (ec *executionContext) unmarshalNID2string(ctx context.Context, v interface{}) (string, error) {
@@ -6812,22 +6969,6 @@ func (ec *executionContext) marshalN__TypeKind2string(ctx context.Context, sel a
 	return res
 }
 
-func (ec *executionContext) unmarshalOAssessmentLevel2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐAssessmentLevel(ctx context.Context, v interface{}) (*model.AssessmentLevel, error) {
-	if v == nil {
-		return nil, nil
-	}
-	var res = new(model.AssessmentLevel)
-	err := res.UnmarshalGQL(v)
-	return res, graphql.ErrorOnPath(ctx, err)
-}
-
-func (ec *executionContext) marshalOAssessmentLevel2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐAssessmentLevel(ctx context.Context, sel ast.SelectionSet, v *model.AssessmentLevel) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return v
-}
-
 func (ec *executionContext) unmarshalOBoolean2bool(ctx context.Context, v interface{}) (bool, error) {
 	res, err := graphql.UnmarshalBoolean(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -6914,6 +7055,13 @@ func (ec *executionContext) marshalOControlMapping2ᚖgoᚑgraphqlᚑbackendᚋg
 		return graphql.Null
 	}
 	return ec._ControlMapping(ctx, sel, v)
+}
+
+func (ec *executionContext) marshalOControlReference2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐControlReference(ctx context.Context, sel ast.SelectionSet, v *model.ControlReference) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._ControlReference(ctx, sel, v)
 }
 
 func (ec *executionContext) marshalOEvidence2ᚖgoᚑgraphqlᚑbackendᚋgraphᚋmodelᚐEvidence(ctx context.Context, sel ast.SelectionSet, v *model.Evidence) graphql.Marshaler {
