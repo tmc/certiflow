@@ -16,7 +16,7 @@ run-frontend-dev: ## Run frontend
 generate: ## Generate code.
 	@echo "Generating code..."
 	@cd ./go-graphql-backend && make generate
-	@cd ./react-frontend && make generate
+	@cd ./vite-react-frontend && make generate
 
 .PHONY: help
 help: ## Show help for each of the Makefile recipes.

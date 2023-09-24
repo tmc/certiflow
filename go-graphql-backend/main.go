@@ -72,8 +72,8 @@ func main() {
 								},
 								Levels: []*model.Level{
 									{
-										Level:                 1,
-										Factors:               []model.FactorType{},
+										Level: 1,
+										// OrganizationalFactors: []string{},
 										ImplementationExample: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
 										//AuthoritativeSourceMapping:
 									},
@@ -98,10 +98,10 @@ func main() {
 	// Set the context with the span from the request.
 
 	cors := cors.New(cors.Options{
-		AllowedOrigins: []string{"*"},
-		AllowedMethods: []string{"GET", "POST"},
-		AllowedHeaders: []string{"*"},
-		//ExposedHeaders:   []string{"Link"},
+		AllowedOrigins:   []string{"*"},
+		AllowedMethods:   []string{"GET", "POST"},
+		AllowedHeaders:   []string{"*"},
+		ExposedHeaders:   []string{"Link"},
 		AllowCredentials: true,
 		Debug:            true,
 	})

@@ -172,7 +172,7 @@
         ]
     },
     {
-        "id": "1",
+        "id": "2",
         "sectionIdentifier": "01.0",
         "title": "Access Control",
         "version": "HITRUST v9.4",
@@ -734,5 +734,81 @@
                 ]
             }
         ]
-    }
+    },
+    {
+        "id": "3",
+        "sectionIdentifier": "02.0",
+        "title": "Human Resources Security",
+        "version": "HITRUST v9.4",
+        "objectives": [
+          {
+            "id": "1",
+            "sectionIdentifier": "02.01",
+            "title": "Prior to Employment",
+            "description": "To ensure that employees, contractors, and third-party users are suitable for the roles for which they are being considered, to reduce the risk of fraud, theft, or misuse of facilities.",
+            "controlReferences": [
+              {
+                "id": "1",
+                "sectionIdentifier": "02.a",
+                "name": "Roles and Responsibilities",
+                "specification": "Security roles and responsibilities of employees, contractors and third-party users shall be defined and documented in accordance with the organization’s information security policy.",
+                "topics": ["Human Resources Security"],
+                "factorType": "ORGANIZATIONAL",
+                "levels": [
+                  {
+                    "level": 1,
+                    "organizationalFactors": [],
+                    "systemFactors": [],
+                    "regulatoryFactors": ["PCI DSS v3.2.1"],
+                    "authoritativeSourceMapping": ["1 TAC 15 390.2 - 1 TAC § 390.2(a)(1)", "Banking Requirements - FFIEC IS v2016 A.2.7", "Banking Requirements - FFIEC IS v2016 A.2.9", "Health Industry Cybersecurity Practices - 10.S.A", "HIPAA Security Rule - § 164.308(a)(1)(i)", "HIPAA Security Rule - § 164.308(a)(1)(ii)(B)", "HIPAA Security Rule - § 164.308(a)(4)(ii)(C)", "IRS Pub 1075 - 3.3.5(1)a", "IRS Pub 1075 - 3.3.5(1)b", "ISO/IEC 27002:2013 6.1.1", "ISO/IEC 27002:2013 7.1.2", "ISO/IEC 27799:2016 6.1.1", "ISO/IEC 27799:2016 7.1.2", "NIST Cybersecurity Framework v1.1 - DE.DP-1", "NIST Cybersecurity Framework v1.1 - RS.CO-1", "NIST Cybersecurity Framework v1.1 - RS.CO-4", "NIST SP 800-53 r5 - PL-2a4", "NIST SP 800-53 r5 - PS-9"],
+                    "implementationExample": "Policies and/or standards related to user roles and responsibilities include: implementing and acting in accordance with the organization's information security policies; protecting assets from unauthorized access, disclosure, modification, destruction, or interference; executing particular security processes or activities; ensuring responsibility is assigned to the individual for actions taken; reporting security events or potential events or other security risks to the organization; and security roles and responsibilities are defined and clearly communicated to users and job-candidates during the pre-employment process."
+                  },
+                  {
+                    "level": 2,
+                    "organizationalFactors": ["Number of Licensed Beds: Between 200 and 750 Beds", "Number of Covered Lives: Between 1 million to 7.5 Million Lives", "Number of transactions received and sent annually: Between 1 and 6 Million Transactions", "Number of Admitted Patients annually: Between 7.5k and 20k Patients", "Total Terabytes of Data Held: Between 15 and 60 Terabytes(TB)", "Volume of Data Exchanged Annually: Between 25 and 100 Megabytes(MB)", "Number of prescriptions filled annually: Between 10 million to 60 million Prescriptions", "Number of Physicians on staff: Between 11 and 25 Physicians", "Number of Patient Encounters Annually: Between 60k to 180k Encounters", "Number of Individual Records that are processed annually: Between 180k and 725k Records", "Number of Records that are currently held: Between 10 and 60 Million Records"],
+                    "systemFactors": [],
+                    "regulatoryFactors": ["FedRAMP", "FISMA", "IRS Pub. 1075", "MARS-E v2.0", "Banking Requirements", "NY OHIP Moderate-plus Security Baselines v3.1", "PCI DSS v3.2.1", "CMS Minimum Security Requirements (High)", "High", "Low", "Moderate", "Supplemental"],
+                    "authoritativeSourceMapping": ["1 TAC 15 390.2 - 1 TAC § 390.2(a)(1)", "1 TAC 15 390.2 - 1 TAC § 390.2(a)(4)(A)(xi)", "AICPA Trust Services Criteria - AICPA 2017 CC1.4", "Banking Requirements - FFIEC IS v2016 A.2.7", "Banking Requirements - FFIEC IS v2016 A.2.9", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PS-01 (HIGH; MOD)", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PS-02 (HIGH; MOD)", "FedRAMP - PS-2a[H]", "FedRAMP - PS-2a[L]", "FedRAMP - PS-2a[M]", "FedRAMP - PS-2b[H]", "FedRAMP - PS-2b[L]", "FedRAMP - PS-2c[H]", "FedRAMP - PS-2c[L]", "FedRAMP - PS-2c[M]", "FedRAMP - PS-3(3)b[M]", "HIPAA Privacy Rule - 164.530(a)(2)", "HIPAA Security Rule - § 164.308(a)(3)(ii)(A)", "HIPAA Security Rule - § 164.308(a)(5)(i)", "HIPAA Security Rule - § 164.316(a)", "HIPAA Security Rule - § 164.316(b)(1)(i)", "HIPAA Security Rule - § 164.316(b)(2)(ii)", "ISO/IEC 27002:2013 6.1.1", "ISO/IEC 27002:2013 7.1.2", "ISO/IEC 27799:2016 6.1.1", "ISO/IEC 27799:2016 7.1.2", "MARS-E v2.2 - PS-2a", "MARS-E v2.2 - PS-2b", "MARS-E v2.2 - PS-2e", "NIST Cybersecurity Framework v1.1 - PR.IP-11", "NIST SP 800-53 R4 PS-2[HML]{0}", "NIST SP 800-53 R4 PS-3(3)b[S]{0}", "NIST SP 800-53 R4 PS-6(2)c[S]{2}", "NIST SP 800-53 R4 SA-21(1)[S]{0}", "NIST SP 800-53 r5 - PS-2", "NIST SP 800-53 r5 - PS-3(3)b", "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PS-2a[M]-0", "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PS-2b[M]-0", "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PS-2e[M]-0", "PCI DSS v3.2.1 12.4.1", "State of Nevada Security and Privacy of Personal Information (NRS 603A) - NRS 603A.215.1"],
+                    "implementationExample": "The organization has developed, disseminated, and annually reviewed and updated a formal, documented personnel security plan. The formal, documented personnel security policy addresses the purpose of its human resources security protection program, the scope of its human resources security protection program, the roles of its human resources security protection program, the responsibilities for its human resources security protection program, management commitment to its human resources security protection program, coordination among organizational entities for its human resources security protection program, and compliance with its human resources security protection program. Further, the organization documents procedures to facilitate the implementation of the personnel security policy and associated personnel security controls. The organization assigns risk designations to all organizational positions as appropriate, establishes screening criteria for risk designations as appropriate, and reviews and revises designations every 365 days."
+                  }
+                ]
+              },
+              {
+                "id": "2",
+                "sectionIdentifier": "02.b",
+                "name": "Screening",
+                "specification": "Background verification checks on all candidates for employment, contractors, and third-party users shall be carried out in accordance with relevant laws, regulations and ethics, and proportional to the business requirements, the classification of the information to be accessed, and the perceived risks.",
+                "topics": [],
+                "factorType": "ORGANIZATIONAL",
+                "levels": [
+                  {
+                    "level": 1,
+                    "organizationalFactors": [],
+                    "systemFactors": [],
+                    "regulatoryFactors": ["NY OHIP Moderate-plus Security Baselines v3.1", "PCI DSS v3.2.1"],
+                    "authoritativeSourceMapping": ["1 TAC 15 390.2 - 1 TAC § 390.2(a)(4)(A)(xi)", "Banking Requirements - FFIEC IS v2016 A.6.8(b)", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PS-01 (HIGH; MOD)", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PS-02 (HIGH; MOD)", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PS-03 (HIGH; MOD)", "FedRAMP - PS-3(3)b[H]", "FedRAMP - PS-3(3)b[M]", "FedRAMP - PS-3a[H]", "FedRAMP - PS-3a[L]", "FedRAMP - PS-3a[M]", "HIPAA Security Rule - § 164.308(a)(3)(ii)(A)", "HIPAA Security Rule - § 164.308(a)(3)(ii)(B)", "HIPAA Security Rule - § 164.308(a)(4)(i)", "HIPAA Security Rule - § 164.308(a)(4)(ii)(B)", "HIPAA Security Rule - § 164.310(a)(2)(iii)", "HIPAA Security Rule - § 164.312(d)", "IRS Pub 1075 - PS-3a", "ISO/IEC 27002:2013 7.1.1", "ISO/IEC 27799:2016 7.1.1", "MARS-E v2.2 - PS-3a", "MARS-E v2.2 - PS-3e1", "MARS-E v2.2 - PS-5a", "NIST SP 800-171 r2 - 3.9.1[a]", "NIST SP 800-53 R4 PS-3a[HML]{0}", "NIST SP 800-53 R4 SA-21[S]{2}", "NIST SP 800-53 r5 - PS-3a", "NIST SP 800-53 r5 - SA-21a", "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PS-3a[M]-0", "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PS-3e1[M]-0", "PCI DSS v3.2.1 12.7", "State of Nevada Security and Privacy of Personal Information (NRS 603A) - NRS 603A.215.1"],
+                    "implementationExample": "The organization screens individuals requiring access to organizational information before authorizing access."
+                  },
+                  {
+                    "level": 2,
+                    "organizationalFactors": ["Number of Licensed Beds: Between 200 and 750 Beds", "Number of Covered Lives: Between 1 million to 7.5 Million Lives", "Number of transactions received and sent annually: Between 1 and 6 Million Transactions", "Number of Admitted Patients annually: Between 7.5k and 20k Patients", "Total Terabytes of Data Held: Between 15 and 60 Terabytes(TB)", "Volume of Data Exchanged Annually: Between 25 and 100 Megabytes(MB)", "Number of prescriptions filled annually: Between 10 million to 60 million Prescriptions", "Number of Physicians on staff: Between 11 and 25 Physicians", "Number of Patient Encounters Annually: Between 60k to 180k Encounters", "Number of Individual Records that are processed annually: Between 180k and 725k Records", "Number of Records that are currently held: Between 10 and 60 Million Records"],
+                    "systemFactors": [],
+                    "regulatoryFactors": ["FISMA", "IRS Pub. 1075", "MARS-E v2.0", "NY OHIP Moderate-plus Security Baselines v3.1", "PCI DSS v3.2.1", "CMS Minimum Security Requirements (High)"],
+                    "authoritativeSourceMapping": ["1 TAC 15 390.2 - 1 TAC § 390.2(a)(1)", "1 TAC 15 390.2 - 1 TAC § 390.2(a)(4)(A)(xi)", "AICPA Trust Services Criteria - AICPA 2017 CC1.4", "Banking Requirements - FFIEC IS v2016 A.6.8(b)", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PS-01 (HIGH; MOD)", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PS-02 (HIGH; MOD)", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PS-03 (HIGH; MOD)", "HIPAA Privacy Rule - 164.504(e)(2)(ii)(D)", "HIPAA Privacy Rule - 164.530(i)(3)", "HIPAA Security Rule - § 164.308(a)(3)(ii)(B)", "ISO/IEC 27002:2013 7.1.1", "ISO/IEC 27799:2016 7.1.1", "MARS-E v2.2 - PS-2d", "MARS-E v2.2 - PS-3a", "MARS-E v2.2 - PS-3b", "MARS-E v2.2 - PS-3c", "MARS-E v2.2 - PS-3d", "NIST Cybersecurity Framework v1.1 - ID.GV-3", "NIST Cybersecurity Framework v1.1 - PR.IP-11", "NIST Cybersecurity Framework v1.1 - RC.CO-1", "NIST Cybersecurity Framework v1.1 - RC.CO-2", "NIST Cybersecurity Framework v1.1 - RC.CO-3", "NIST SP 800-53 R4 PS-3b[HML]{0}", "NIST SP 800-53 R4 SI-12[HML]{2}", "NIST SP 800-53 r5 - PS-3b", "NIST SP 800-53 r5 - SI-12", "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PS-2.PII[M]-1", "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PS-2d[M]-0", "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PS-3(3)b[MN]-0", "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PS-3b[M]-0", "PCI DSS v3.2.1 12.7", "State of Nevada Security and Privacy of Personal Information (NRS 603A) - NRS 603A.215.1"],
+                    "implementationExample": "Where a job, either on initial appointment or on promotion, involves the person having access to information assets and, in particular, those handling covered information (e.g., financial information, personal information, or highly confidential information), the organization verifies the identity of such staff, current address of such staff, and previous employment of such staff. The organization defines criteria and limitations for verification checks (e.g., who is eligible to screen people, and how, when, and why verification checks are carried out)."
+                  },
+                  {
+                    "level": 3,
+                    "organizationalFactors": ["Number of Licensed Beds: Greater than 750 Beds", "Number of Covered Lives: Greater than 7.5 Million Lives", "Number of transactions received and sent annually: More than 6 Million Transactions", "Number of Admitted Patients annually: More than 20k Patients", "Total Terabytes of Data Held: More than 60 Terabytes(TB)", "Volume of Data Exchanged Annually: More than 100 Megabytes(MB)", "Number of prescriptions filled annually: Greater than 60 million Prescriptions", "Number of Physicians on staff: Greater than 25 Physicians", "Number of Patient Encounters Annually: Greater than 180k Encounters", "Number of Individual Records that are processed annually: More than 725k Records", "Number of Records that are currently held: More than 60 Million Records"],
+                    "systemFactors": [],
+                    "regulatoryFactors": ["FedRAMP", "Banking Requirements", "NY OHIP Moderate-plus Security Baselines v3.1", "PCI DSS v3.2.1"],
+                    "authoritativeSourceMapping": ["1 TAC 15 390.2 - 1 TAC § 390.2(a)(1)", "1 TAC 15 390.2 - 1 TAC § 390.2(a)(4)(A)(xi)", "Banking Requirements - FFIEC IS v2016 A.6.8(b)", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PS-03 (HIGH; MOD)", "HIPAA Security Rule - § 164.308(a)(3)(ii)(B)", "HITRUST", "ISO/IEC 27002:2013 7.1.1", "ISO/IEC 27799:2016 7.1.1", "NIST Cybersecurity Framework v1.1 - PR.IP-11", "NIST SP 800-53 R4 IA-4(3)[S]{1}", "NIST SP 800-53 r5 - PS-3(3)b", "NIST SP 800-53 r5 - PS-3(4)", "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 IA-4(3)[MN]-0", "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PS-2.PII[M]-2", "PCI DSS v3.2.1 12.7", "State of Nevada Security and Privacy of Personal Information (NRS 603A) - NRS 603A.215.1"],
+                    "implementationExample": "Verification checks consider all relevant: privacy legislation; protection of covered data legislation; and employment-based legislation. Where permitted and appropriate, verification checks: include availability of satisfactory character references (e.g., one business and one personal); include a completeness and accuracy check of the applicant's curriculum vitae; include confirmation of claimed academic and professional qualifications; include independent identity check (passport or similar document); and require all applicants to complete an I-9 form to verify that they are eligible to work in the United States. Verification checks are completed prior to granting access to covered and/or confidential information. The organization specifically defines an individual who performs all screening checks, documents and maintains a list of all screened applicants, and confirms each applicant is assigned a risk."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
 ]

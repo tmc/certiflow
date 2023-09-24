@@ -16,12 +16,15 @@ import { graphql } from "../../../src/gql";
 const allControlCategoriesDocument = graphql(`
   query allControlCategories {
     allControlCategories {
+      sectionIdentifier
       id
       title
       objectives {
+        sectionIdentifier
         id
         title
         controlReferences {
+            sectionIdentifier
             id
             name
             specification
@@ -74,24 +77,28 @@ const allControlCategoriesDocument = graphql(`
 
 export default function ItemList() {
     const { data } = useQuery(allControlCategoriesDocument);
-    console.log(data)
+    // console.log(data)
     const categories = data?.allControlCategories
+    if (!categories) {
+        return <p>Loading...</p>;
+    }
     return (
         <ScrollArea className="h-[100%] w-[350px] rounded-md border p-4">
             <Accordion type="multiple">
                 {categories!.map((item) => {
+                    console.log(item)
                     return (
-                        <AccordionItem value={item!.id}>
-                            <AccordionTrigger>{item!.title}</AccordionTrigger>
+                        <AccordionItem value={item.sectionIdentifier}>
+                            <AccordionTrigger>{item.title}</AccordionTrigger>
                             <AccordionContent>
-                                {item.objectives!.map((objective) => {
+                                {item!.objectives!.map((objective) => {
                                     return (
-                                        <AccordionItem value={objective!.id}>
+                                        <AccordionItem value={objective!.sectionIdentifier}>
                                             <AccordionTrigger>{objective!.title}</AccordionTrigger>
                                             <AccordionContent>
                                                 {objective!.controlReferences!.map((controlReference) => {
                                                     return (
-                                                        <AccordionItem value={controlReference!.id}>
+                                                        <AccordionItem value={controlReference!.sectionIdentifier}>
                                                             <AccordionTrigger>{controlReference!.name}</AccordionTrigger>
                                                             <AccordionContent>
                                                                 <p>Content</p>
