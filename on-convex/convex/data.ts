@@ -1,6 +1,6 @@
 import { v } from "convex/values";
 import { action, internalAction, internalMutation, internalQuery, mutation, query } from "./_generated/server";
-import { internal } from "./_generated/api";
+import { api, internal } from "./_generated/api";
 import OpenAI from 'openai';
 
 
@@ -56,11 +56,20 @@ const embed = async (text: string) => {
   return result.data[0].embedding;
 }
 
+export const fetchControl = query({
+  args: {
+    id: v.string(),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db.get(args.id as any);
+  },
+});
+
 export const relatedControls = action({
   args: {
     descriptionQuery: v.string(),
   },
-  handler: async (ctx, args) => {
+  handler: async (ctx, args): Promise<any> => {
     // 1. Generate an embedding from you favorite third party API:
     const embedding = await embed(args.descriptionQuery);
     // 2. Then search for similar foods!
@@ -69,6 +78,9 @@ export const relatedControls = action({
       limit: 16,
       //filter: (q) => q.eq("cuisine", "French"),
     });
-    // ...
+
+    return Promise.all(results.map((r) => {
+      return ctx.runQuery(api.data.fetchControl, { id: r._id });
+    }));
   },
 });
