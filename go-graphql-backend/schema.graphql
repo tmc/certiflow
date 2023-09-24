@@ -98,9 +98,10 @@ type Evidence {
 
 # Maps a specific piece of evidence to a control reference and its assessment level
 type ControlMapping {
-  controlReferenceId: ID!
-  assessment: AssessmentLevel
-  evidenceCreator: String # Who uploaded or linked the evidence
+  controlReference: ControlReference
+  assessment: AssessmentLevel!
+  details: String!
+  evidenceCreator: String! # Who uploaded or linked the evidence
 }
 
 # Enumerates the possible assessment levels for a control

@@ -22,9 +22,10 @@ type ControlCategory struct {
 }
 
 type ControlMapping struct {
-	ControlReferenceID string           `json:"controlReferenceId"`
-	Assessment         *AssessmentLevel `json:"assessment,omitempty"`
-	EvidenceCreator    *string          `json:"evidenceCreator,omitempty"`
+	ControlReference *ControlReference `json:"controlReference,omitempty"`
+	Assessment       AssessmentLevel   `json:"assessment"`
+	Details          string            `json:"details"`
+	EvidenceCreator  string            `json:"evidenceCreator"`
 }
 
 type ControlReference struct {
@@ -50,10 +51,12 @@ type EvidenceInput struct {
 }
 
 type Level struct {
-	Level                      int          `json:"level"`
-	Factors                    []FactorType `json:"factors"`
-	AuthoritativeSourceMapping []string     `json:"authoritativeSourceMapping"`
-	ImplementationExample      string       `json:"implementationExample"`
+	Level                      int      `json:"level"`
+	OrganizationalFactors      []string `json:"organizationalFactors"`
+	SystemFactors              []string `json:"systemFactors"`
+	RegulatoryFactors          []string `json:"regulatoryFactors"`
+	AuthoritativeSourceMapping []string `json:"authoritativeSourceMapping"`
+	ImplementationExample      string   `json:"implementationExample"`
 }
 
 type Objective struct {
