@@ -1,10 +1,10 @@
 import { v } from "convex/values";
-import { mutation, query } from "./_generated/server";
+import { internalMutation, mutation, query } from "./_generated/server";
 
 export const allControlCategories = query({
   args: {},
   handler: async (ctx, args) => {
-    return await ctx.db.query("controls").collect();
+    return await ctx.db.query("control_categories").collect();
   },
 });
 
