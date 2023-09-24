@@ -13,6 +13,7 @@ import { useState } from "react";
 import { Progress } from "@/components/ui/progress";
 
 export default function Home() {
+  const [doc, setDoc] = useState("");
   return (
     <>
       <StickyHeader className="p-2 font-bold">certiflow</StickyHeader>
@@ -21,7 +22,14 @@ export default function Home() {
           <SearchedInput />
         </StickySidebar>
         <main className="min-h-[calc(100vh-(2.5rem+1px))] p-4">
-          <Textarea className="h-full" placeholder="Insert your policy here" />
+          <Textarea
+            value={doc}
+            onChange={(event) => {
+              setDoc(event.target.value);
+            }}
+            className="h-full"
+            placeholder="Insert your policy here"
+          />
         </main>
       </div>
       <Footer>copyright Certiflow 2023</Footer>
@@ -33,7 +41,7 @@ function SearchedInput() {
   const [search, setSearch] = useState("");
   return (
     <>
-      <Progress value={30} className="mb-2" />
+      <Progress value={30} className="mb-2 basis-4" />
       <Input
         value={search}
         onChange={(event) => {

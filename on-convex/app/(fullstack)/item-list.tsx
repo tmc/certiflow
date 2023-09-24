@@ -116,8 +116,12 @@ export default function ItemList({ filter }: { filter: string }) {
                                       Control: {controlReference!.name}
                                     </div>
                                     <div className="pl-12">
-                                      <p>Content </p>
-                                      <FakeParagraphs count={2} words={8} />
+                                      <p>
+                                        {
+                                          controlReference.levels[0]
+                                            .implementationExample
+                                        }
+                                      </p>
                                     </div>
                                   </div>
                                 );
