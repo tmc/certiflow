@@ -81,7 +81,9 @@ enum FactorType {
 # Describes a specific level, which might have multiple factor types and authoritative sources
 type Level {
   level: Int! # Assuming values like 1, 2, 3
-  factors: [FactorType!]!
+  organizationalFactors: [String!]!
+  systemFactors: [String!]!
+  regulatoryFactors: [String!]!
   authoritativeSourceMapping: [String!]!
   implementationExample: String!
 }
