@@ -808,7 +808,41 @@
                 ]
               }
             ]
-          }
-        ]
-      }
+          },
+          {
+            "id": "2",
+            "sectionIdentifier": "02.02",
+            "title": "During On-Boarding",
+            "description": "To ensure agreements are signed by employees, contractors, and third-party users of information assets on their security roles and responsibilities at the time of their employment or engagement, prior to access being granted.",
+            "controlReferences": [
+              {
+                "id": "1",
+                "sectionIdentifier": "02.c",
+                "name": "Terms and Conditions of Employment",
+                "specification": "As part of their contractual obligation, employees, contractors, and third-party users shall agree and sign the terms and conditions of their employment contract, which shall include their responsibilities for information security.",
+                "topics": ["Human Resources Security"],
+                "factorType": "ORGANIZATIONAL",
+                "levels": [
+                  {
+                    "level": 1,
+                    "organizationalFactors": [],
+                    "systemFactors": [],
+                    "regulatoryFactors": ["FISMA", "IRS Pub. 1075", "MARS-E v2.0", "NY OHIP Moderate-plus Security Baselines v3.1", "PCI DSS v3.2.1", "CMS Minimum Security Requirements (High)"],
+                    "authoritativeSourceMapping": ["1 TAC 15 390.2 - 1 TAC § 390.2(a)(1)", "1 TAC 15 390.2 - 1 TAC § 390.2(a)(4)(A)(xi)", "Banking Requirements - FFIEC IS v2016 A.2.7", "Banking Requirements - FFIEC IS v2016 A.2.9", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PL-04 (HIGH; MOD)", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PS-06 (HIGH; MOD)", "FedRAMP - PS-6a[H]", "FedRAMP - PS-6a[L]", "FedRAMP - PS-6a[M]", "IRS Pub 1075 - PS-6a", "ISO/IEC 27002:2013 7.1.2", "ISO/IEC 27799:2016 7.1.2", "MARS-E v2.2 - PS-3e2", "MARS-E v2.2 - PS-6a", "NIST SP 800-53 R4 SA-21[S]{1}", "NIST SP 800-53 r5 - SA-21a", "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PS-6a[M]-0", "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PS-6c1[M]-0", "PCI DSS v3.2.1 12.4", "State of Nevada Security and Privacy of Personal Information (NRS 603A) - NRS 603A.215.1"],
+                    "implementationExample": "The organization ensures that employees, contractors, and third-party users agree to terms and conditions concerning information security appropriate to the nature and extent of access they will have to the organization's assets associated with information systems and services. The organization develops and documents access agreements for organizational systems. Privileges are not granted until the terms and conditions have been satisfied and agreements have been signed."
+                  },
+                  {
+                    "level": 2,
+                    "organizationalFactors": ["Number of Licensed Beds: Between 200 and 750 Beds", "Number of Covered Lives: Between 1 million to 7.5 Million Lives", "Number of transactions received and sent annually: Between 1 and 6 Million Transactions", "Number of Admitted Patients annually: Between 7.5k and 20k Patients", "Total Terabytes of Data Held: Between 15 and 60 Terabytes(TB)", "Volume of Data Exchanged Annually: Between 25 and 100 Megabytes(MB)", "Number of prescriptions filled annually: Between 10 million to 60 million Prescriptions", "Number of Physicians on staff: Between 11 and 25 Physicians", "Number of Patient Encounters Annually: Between 60k to 180k Encounters", "Number of Individual Records that are processed annually: Between 180k and 725k Records", "Number of Records that are currently held: Between 10 and 60 Million Records"],
+                    "systemFactors": [],
+                    "regulatoryFactors": ["FISMA", "HITRUST De-ID Framework", "IRS Pub. 1075", "MARS-E v2.0", "PCI DSS v3.2.1", "CMS Minimum Security Requirements (High)", "High", "Low", "Moderate"],
+                    "authoritativeSourceMapping": ["1 TAC 15 390.2 - 1 TAC § 390.2(a)(1)", "AICPA Trust Services Criteria - AICPA 2017 CC1.4", "Banking Requirements - FFIEC IS v2016 A.2.7", "Banking Requirements - FFIEC IS v2016 A.2.9", "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 PL-04 (HIGH; MOD)", "HIPAA Security Rule - § 164.308(a)(3)(ii)(A)", "HIPAA Security Rule - § 164.308(a)(4)(i)", "HIPAA Security Rule - § 164.308(a)(4)(ii)(B)", "HITRUST De-ID Framework - De-ID Framework v1 Non-disclosure and Confidentiality: Policy", "IRS Pub 1075 - PS-6(3)b", "IRS Pub 1075 - SR-3(3)", "ISO/IEC 27002:2013 7.1.2", "ISO/IEC 27799:2016 7.1.2", "NIST Cybersecurity Framework v1.1 - ID.GV-3", "NIST Cybersecurity Framework v1.1 - PR.IP-11", "NIST SP 800-53 R4 PS-4(1)b[S]{1}", "NIST SP 800-53 R4 PS-6(3)b[S]{0}", "NIST SP 800-53 R4 PS-6a[HML]{1}", "NIST SP 800-53 R4 PS-6c[HML]{1}", "NIST SP 800-53 r5 - PS-3(1)", "NIST SP 800-53 r5 - PS-4(1)b", "NIST SP 800-53 r5 - PS-6(3)a", "NIST SP 800-53 r5 - PS-6(3)b", "NIST SP 800-53 r5 - PS-6a", "NIST SP 800-53 r5 - PS-6c1", "PCI DSS v3.2.1 12.4", "State of Nevada Security and Privacy of Personal Information (NRS 603A) - NRS 603A.215.1"],
+                    "implementationExample": "The terms and conditions of employment reflect the organization's security policy. Terms and conditions of employment: clarify and state that all employees, contractors, and third-party users who are given access to covered information sign a confidentiality or non-disclosure agreement prior to being given access to information assets; clarify and state the employee's, contractor's, and any other user's legal responsibilities and rights (e.g., regarding copyright laws or data protection legislation); clarify and state responsibilities for the classification of information and management of organizational assets associated with information systems and services handled by the employee, contractor, or third-party user; clarify and state responsibilities of the employee, contractor, or third-party user for the handling of information received from other companies or external parties; clarify and state responsibilities of the organization for the handling of covered information, including covered information created as a result of, or in the course of, employment with the organization; clarify and state responsibilities that are extended outside the organization's premises and outside normal working hours (e.g., in the case of home-working); clarify and state actions to be taken if the employee, contractor, or third-party user disregards the organization's security requirements; and ensure that conditions relating to security policy survive the completion of the employment in perpetuity. The organization maintains a list of all authorized signed non-disclosure agreement (NDA) forms. This list is kept up to date to reflect personnel or other workforce member changes and departures."
+                  }
+                ]
+              }
+            ]
+        }
+    ]
+}
 ]
