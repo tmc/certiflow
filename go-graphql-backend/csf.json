@@ -353,6 +353,7 @@
                 ]
             },
             {
+                "id": "2",
                 "sectionIdentifier": "01.02",
                 "title": "Authorized Access to Information Systems",
                 "description": "To ensure authorized user accounts are registered, tracked, and periodically validated to prevent unauthorized access to information systems.",
