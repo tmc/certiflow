@@ -9,17 +9,31 @@ import { StickySidebar } from "@/components/layout/sticky-sidebar";
 import ItemList from "./item-list";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useDeferredValue, useEffect, useState } from "react";
 import { Progress } from "@/components/ui/progress";
+import { useAction } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 export default function Home() {
   const [doc, setDoc] = useState("");
+  const deferredDoc = useDeferredValue(doc);
+  const [controls, setControls] = useState([]);
+  const search = useAction(api.data.relatedControls);
+  useEffect(() => {
+    async function bla() {
+      //// TODO: Before enabling this implement document splitting
+      //// and caching of the embedding on the backend
+      // const controls = await search( {descriptionQuery: deferredDoc});
+      // setControls(controls);
+    }
+    void bla();
+  }, [deferredDoc, search]);
   return (
     <>
       <StickyHeader className="p-2 font-bold">certiflow</StickyHeader>
       <div className="grid grid-cols-[500px_minmax(0,1fr)]">
-        <StickySidebar className="top-[calc(2.5rem+1px)] h-[calc(100vh-(2.5rem+1px))] p-4 flex flex-col">
-          <SearchedInput />
+        <StickySidebar className="top-[calc(2.5rem+1px)] h-[calc(100vh-(2.5rem+1px))] p-4 border-r flex flex-col">
+          <SearchedInput relevantControls={controls} />
         </StickySidebar>
         <main className="min-h-[calc(100vh-(2.5rem+1px))] p-4">
           <Textarea
@@ -37,7 +51,9 @@ export default function Home() {
   );
 }
 
-function SearchedInput() {
+function SearchedInput({ relevantControls }: { relevantControls: any[] }) {
+  console.log(relevantControls);
+
   const [search, setSearch] = useState("");
   return (
     <>

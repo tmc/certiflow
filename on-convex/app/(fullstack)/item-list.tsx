@@ -60,7 +60,7 @@ export default function ItemList({ filter }: { filter: string }) {
   const categories: any[] | undefined = useQuery(api.data.allControlCategories);
   console.log(categories);
   return (
-    <ScrollArea className="rounded-md border p-4">
+    <ScrollArea className="rounded-md p-4">
       <div>
         {categories
           ?.filter(
