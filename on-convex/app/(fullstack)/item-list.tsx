@@ -65,6 +65,7 @@ export default function ItemList({ filter }: { filter: string }) {
         {categories
           ?.filter(
             (item) =>
+              filter === "" ||
               caseInsensitiveIncludes(item.title, filter) ||
               item.objectives?.some(
                 (objective: any) =>
@@ -82,6 +83,7 @@ export default function ItemList({ filter }: { filter: string }) {
                   {item
                     .objectives!.filter(
                       (objective: any) =>
+                        filter === "" ||
                         caseInsensitiveIncludes(objective.title, filter) ||
                         objective.controlReferences?.some(
                           (controlReference: any) =>
@@ -101,6 +103,7 @@ export default function ItemList({ filter }: { filter: string }) {
                             {objective!
                               .controlReferences!.filter(
                                 (controlReference: any) =>
+                                  filter === "" ||
                                   caseInsensitiveIncludes(
                                     controlReference.name,
                                     filter

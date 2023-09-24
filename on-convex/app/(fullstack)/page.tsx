@@ -10,6 +10,7 @@ import ItemList from "./item-list";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { Progress } from "@/components/ui/progress";
 
 export default function Home() {
   return (
@@ -20,7 +21,7 @@ export default function Home() {
           <SearchedInput />
         </StickySidebar>
         <main className="min-h-[calc(100vh-(2.5rem+1px))] p-4">
-          <Textarea placeholder="Insert your policy here" />
+          <Textarea className="h-full" placeholder="Insert your policy here" />
         </main>
       </div>
       <Footer>copyright Certiflow 2023</Footer>
@@ -32,6 +33,7 @@ function SearchedInput() {
   const [search, setSearch] = useState("");
   return (
     <>
+      <Progress value={30} className="mb-2" />
       <Input
         value={search}
         onChange={(event) => {
