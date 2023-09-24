@@ -8,6 +8,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { FakeParagraphs } from "@/components/helpers/FakeParagraphs";
 // import { ControlCategory } from '../../../src/gql/graphql.ts'
 
 // const mockHierarchy: ControlCategory[] = [{
@@ -51,50 +52,82 @@ import { api } from "@/convex/_generated/api";
 //     }]
 // }]
 
-export default function ItemList() {
+function caseInsensitiveIncludes(a: string, b: string) {
+  return a.toLowerCase().includes(b.toLowerCase());
+}
+
+export default function ItemList({ filter }: { filter: string }) {
   const categories: any[] | undefined = useQuery(api.data.allControlCategories);
   console.log(categories);
   return (
-    <ScrollArea className="h-[100%] rounded-md border p-4">
-      <Accordion type="multiple">
-        {categories?.map((item) => {
-          return (
-            <AccordionItem key={item!.id} value={item!.id}>
-              <AccordionTrigger>Category: {item!.title}</AccordionTrigger>
-              <AccordionContent>
-                {item.objectives!.map((objective) => {
-                  return (
-                    <AccordionItem key={objective!.id} value={objective!.id}>
-                      <AccordionTrigger className="pl-4">
-                        Objective: {objective!.title}
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        {objective!.controlReferences!.map(
-                          (controlReference) => {
-                            return (
-                              <AccordionItem
-                                key={controlReference.id}
-                                value={controlReference!.id}
-                              >
-                                <AccordionTrigger className="pl-8">
-                                  Control: {controlReference!.name}
-                                </AccordionTrigger>
-                                <AccordionContent className="pl-8">
-                                  <p>Content</p>
-                                </AccordionContent>
-                              </AccordionItem>
-                            );
-                          }
-                        )}
-                      </AccordionContent>
-                    </AccordionItem>
-                  );
-                })}
-              </AccordionContent>
-            </AccordionItem>
-          );
-        })}
-      </Accordion>
+    <ScrollArea className="rounded-md border p-4">
+      <div>
+        {categories
+          ?.filter(
+            (item) =>
+              caseInsensitiveIncludes(item.title, filter) ||
+              item.objectives?.some(
+                (objective: any) =>
+                  caseInsensitiveIncludes(objective.title, filter) ||
+                  objective.controlReferences?.some((controlReference: any) =>
+                    caseInsensitiveIncludes(controlReference.name, filter)
+                  )
+              )
+          )
+          .map((item) => {
+            return (
+              <div key={item!.id}>
+                <div className="mt-2 font-medium">Category: {item!.title}</div>
+                <div>
+                  {item
+                    .objectives!.filter(
+                      (objective: any) =>
+                        caseInsensitiveIncludes(objective.title, filter) ||
+                        objective.controlReferences?.some(
+                          (controlReference: any) =>
+                            caseInsensitiveIncludes(
+                              controlReference.name,
+                              filter
+                            )
+                        )
+                    )
+                    .map((objective) => {
+                      return (
+                        <div key={objective!.id}>
+                          <div className="pl-4 mt-2 font-medium">
+                            Objective: {objective!.title}
+                          </div>
+                          <div>
+                            {objective!
+                              .controlReferences!.filter(
+                                (controlReference: any) =>
+                                  caseInsensitiveIncludes(
+                                    controlReference.name,
+                                    filter
+                                  )
+                              )
+                              .map((controlReference) => {
+                                return (
+                                  <div key={controlReference.id}>
+                                    <div className="pl-8 mt-2 font-medium">
+                                      Control: {controlReference!.name}
+                                    </div>
+                                    <div className="pl-12">
+                                      <p>Content </p>
+                                      <FakeParagraphs count={2} words={8} />
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                          </div>
+                        </div>
+                      );
+                    })}
+                </div>
+              </div>
+            );
+          })}
+      </div>
     </ScrollArea>
   );
 }
