@@ -730,9 +730,9 @@
                             "implementationExample": "The organization explicitly authorizes access to the following security functions (deployed in hardware, software, and firmware) and security-relevant information: Setting/modifying audit logs and auditing behavior; Setting/modifying boundary protection system rules; Configuring/modifying access authorizations (e.g., permissions, privileges); Setting/modifying authentication parameters; and Setting/modifying system configurations and parameters. The organization audits the execution of privileged functions on information systems and ensures information systems prevent non-privileged users from executing privileged functions including disabling, circumventing, or altering implemented security safeguards (e.g., IDS/IPS or malicious code protection mechanisms)."
                           }
                         ]
-                    },
+                    }
                 ]
-            },
+            }
         ]
     }
 ]
