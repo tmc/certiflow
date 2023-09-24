@@ -1806,6 +1806,112 @@
                                 "implementationExample": "The organization develops, and implements a written Identity Theft Prevention Program that is designed to detect, prevent, and mitigate identity theft in connection with the opening of an account or any existing account that involves or is designed to permit multiple payments or transactions. The organization defines and incorporates existing policies and implement procedures to: identify relevant patterns, practices, or specific activities that indicate the possible existence of identity theft for the accounts, and incorporate those patterns, practices, and activities into its program; detect patterns, practices, and activities that have been incorporated into the program; respond appropriately to any patterns, practices, and activities that are detected to prevent and mitigate identity theft; and ensure the program and patterns, practices, and activities are updated at least annually, to reflect changes in risks to customers and to the safety and soundness of the organization. The organization has identified that 'Personal Identifying Information' (PII) [also Personally Identifiable Information] means information that alone, or in conjunction with other information, identifies an individual. The organization's definition of PII includes: name, social security number, date of birth, or government-issued identification number; mother's maiden name; unique biometric data, including the individuals fingerprint, voice print, and retina or iris image; electronic identification number, address, or routing code; and telecommunication access device."
                             }
                         ]
+                    },
+                    {
+                        "id": "2",
+                        "sectionIdentifier": "03.b",
+                        "name": "Performing Risk Assessments",
+                        "specification": "Risk Assessments shall be performed to identify and quantify risks.",
+                        "topics": [],
+                        "factorType": "ORGANIZATIONAL",
+                        "levels": [
+                            {
+                                "level": 1,
+                                "organizationalFactors": [],
+                                "systemFactors": [],
+                                "regulatoryFactors": [
+                                    "DirectTrust",
+                                    "HITRUST De-ID Framework",
+                                    "NY OHIP Moderate-plus Security Baselines v3.1",
+                                    "State of Massachusetts Data Protection Act (201 CMR 17.00)",
+                                    "Texas Medical Records Privacy Act"
+                                ],
+                                "authoritativeSourceMapping": [
+                                    "1 TAC 15 390.2 - 1 TAC § 390.2(a)(1)",
+                                    "AICPA Trust Services Criteria - AICPA 2017 CC4.1",
+                                    "Banking Requirements - FFIEC IS v2016 A.4.1",
+                                    "Banking Requirements - FFIEC IS v2016 A.6.28(c)",
+                                    "Banking Requirements - FFIEC IS v2016 A.6.4(a)",
+                                    "Banking Requirements - FFIEC IS v2016 A.7.1",
+                                    "Banking Requirements - FFIEC IS v2016 A.7.2",
+                                    "Banking Requirements - FFIEC IS v2016 A.7.3",
+                                    "Banking Requirements - FFIEC IS v2016 A.7.4(e)",
+                                    "Banking Requirements - FFIEC IS v2016 A.8.1(i)",
+                                    "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 RA-03 (HIGH; MOD)",
+                                    "FTC Red Flags Rule (16 CFR 681) - 16 CFR Part § 681 Appendix A II(b)",
+                                    "HIPAA Security Rule - § 164.308(a)(1)(ii)(A)",
+                                    "HITRUST",
+                                    "HITRUST De-ID Framework - De-ID Framework v1 Risk Assessments: Assessments",
+                                    "ISO/IEC 27002:2013 12.6.1",
+                                    "ISO/IEC 27002:2013 17.1.1",
+                                    "ISO/IEC 27799:2016 12.6.1",
+                                    "ISO/IEC 27799:2016 17.1.1",
+                                    "NIST Cybersecurity Framework v1.1 - ID.RA-3",
+                                    "NIST SP 800-171 r2 - 3.11.1[a]",
+                                    "NIST SP 800-171 r2 - 3.11.1[b]",
+                                    "NIST SP 800-53 R4 RA-3a[HML]{0}",
+                                    "NIST SP 800-53 R4 RA-3c[HML]{0}",
+                                    "NIST SP 800-53 r5 - RA-3d",
+                                    "NY OHIP Moderate-Plus Security Baseline v3.1 - NY DOH SSP v3.1 PM-9b[M]-0",
+                                    "PCI DSS v3.2.1 12.2",
+                                    "State of Massachusetts Data Protection Act (201 CMR 17.00) - 201 CMR 17.03(2)(b)",
+                                    "State of Nevada Security and Privacy of Personal Information (NRS 603A) - NRS 603A.215.1"
+                                ],
+                                "implementationExample": "The organization performs risk assessments that address all the major objectives of the HITRUST CSF. Risk assessments are consistent and identify information security risks to the organization. Risk assessments are to be performed at planned intervals and when major changes occur in the environment, and the results reviewed annually."
+                            },
+                            {
+                                "level": 2,
+                                "organizationalFactors": [
+                                    "Number of Licensed Beds: Between 200 and 750 Beds",
+                                    "Number of Covered Lives: Between 1 million to 7.5 Million Lives",
+                                    "Number of transactions received and sent annually: Between 1 and 6 Million Transactions",
+                                    "Number of Admitted Patients annually: Between 7.5k and 20k Patients",
+                                    "Total Terabytes of Data Held: Between 15 and 60 Terabytes(TB)",
+                                    "Volume of Data Exchanged Annually: Between 25 and 100 Megabytes(MB)",
+                                    "Number of prescriptions filled annually: Between 10 million to 60 million Prescriptions",
+                                    "Number of Physicians on staff: Between 11 and 25 Physicians",
+                                    "Number of Patient Encounters Annually: Between 60k to 180k Encounters",
+                                    "Number of Individual Records that are processed annually: Between 180k and 725k Records",
+                                    "Number of Records that are currently held: Between 10 and 60 Million Records"
+                                ],
+                                "systemFactors": [],
+                                "regulatoryFactors": [
+                                    "FedRAMP",
+                                    "FISMA",
+                                    "FTC Red Flags Rule (16 CFR 681)",
+                                    "IRS Pub. 1075",
+                                    "MARS-E v2.0",
+                                    "Banking Requirements",
+                                    "PCI DSS v3.2.1",
+                                    "CMS Minimum Security Requirements (High)"
+                                ],
+                                "authoritativeSourceMapping": [
+                                    "1 TAC 15 390.2 - 1 TAC § 390.2(a)(3)",
+                                    "1 TAC 15 390.2 - 1 TAC § 390.2(a)(4)(A)(xi)",
+                                    "23 NYCRR 500.09(b)(1)",
+                                    "AICPA Trust Services Criteria - AICPA 2017 CC3.4",
+                                    "Banking Requirements - FFIEC IS v2016 A.4.1",
+                                    "Banking Requirements - FFIEC IS v2016 A.7.1",
+                                    "Banking Requirements - FFIEC IS v2016 A.7.2",
+                                    "Banking Requirements - FFIEC IS v2016 A.7.3",
+                                    "Banking Requirements - FFIEC IS v2016 A.8.1(i)",
+                                    "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 CA-02 (HIGH; MOD)",
+                                    "CMS Acceptable Risk Safeguards (ARS) v3.1 - CMSRs v3.1 RA-03 (HIGH; MOD)",
+                                    "FTC Red Flags Rule (16 CFR 681) - 16 CFR Part § 681.1 (c)",
+                                    "HIPAA Security Rule - § 164.308(a)(1)(ii)(A)",
+                                    "NIST Cybersecurity Framework v1.1 - DE.DP-3",
+                                    "NIST SP 800-53 R4 CA-2b[HML]{0}",
+                                    "NIST SP 800-53 R4 RA-3b[HML]{0}",
+                                    "NIST SP 800-53 R4 RA-3d[HML]{0}",
+                                    "NIST SP 800-53 R4 RA-3e[HML]{0}",
+                                    "NIST SP 800-53 r5 - CA-2d",
+                                    "NIST SP 800-53 r5 - RA-3c",
+                                    "NIST SP 800-53 r5 - RA-3f",
+                                    "PCI DSS v3.2.1 12.2"
+                                ],
+                                "implementationExample": "A formal, documented process is in place for identifying risks and performing risk assessments. The formal, documented process is in place for identifying risks and performing risk assessments includes: the criteria for the evaluation; the categorization of risks; communicating the results of the risk assessments to the affected parties, and to management. The organization: updates the results of a comprehensive risk assessment every two years; updates the results of a comprehensive risk assessment whenever there is a significant change to the information system or operational environment; assesses a subset of the security controls within every 365 days during continuous monitoring; reviews the risk assessment results annually. Information security risk assessments require knowledge of: external environment factors that could exacerbate or moderate any or all of the levels of the risk components described previously; the types of accounts offered by the organization and the methods the organization provides to open and access its accounts; incident histories and actual case impact scenarios; systems architectures."
+                            }
+                        ]
                     }
                 ]
             }
